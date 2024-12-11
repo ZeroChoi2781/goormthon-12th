@@ -1,0 +1,53 @@
+{
+    "name": "@goorm-dev/vapor-hooks",
+    "version": "0.22.0",
+    "description": "Vapor Custom hooks",
+    "keywords": [
+        "goorm",
+        "react",
+        "custom hooks"
+    ],
+    "author": "goorm",
+    "license": "ISC",
+    "main": "dist/cjs/index.js",
+    "module": "dist/esm/index.js",
+    "types": "dist/types/index.d.ts",
+    "files": [
+        "dist"
+    ],
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/goorm-dev/gds.git",
+        "directory": "packages/vapor-hooks"
+    },
+    "publishConfig": {
+        "registry": "https://npm.pkg.github.com/"
+    },
+    "scripts": {
+        "build": "npm run build:typings && rollup -c ../../rollup.config.js",
+        "build:typings": "rm -rf dist/ && tsc --emitDeclarationOnly",
+        "test": "node ./__tests__/vapor-hooks.test.js"
+    },
+    "bugs": {
+        "url": "https://github.com/goorm-dev/gds/issues"
+    },
+    "engines": {
+        "node": ">=16"
+    },
+    "dependencies": {
+        "browserslist": "^4.23.0",
+        "react": "^18.0.26"
+    },
+    "devDependencies": {
+        "@types/react": "^18.0.26"
+    },
+    "peerDependencies": {
+        "react": ">=16.13.1"
+    },
+    "browserslist": [
+        ">1%",
+        "last 4 versions",
+        "Firefox ESR",
+        "not ie < 9"
+    ]
+}

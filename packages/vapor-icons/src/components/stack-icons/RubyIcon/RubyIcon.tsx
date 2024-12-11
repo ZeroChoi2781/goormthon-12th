@@ -1,0 +1,17 @@
+import React from 'react';
+
+import IconBase from '@vapor-icons/src/components/IconBase';
+
+const RubyIcon = (props) => (
+    <IconBase
+        width="16"
+        height="16"
+        viewBox="0 0 16 16"
+        xmlns="http://www.w3.org/2000/svg"
+        {...props}
+    >
+        <path d="M3.87123 2H7.71153L5.44943 5.28341L3.87123 2ZM5.05286 5.50774L3.46571 2.2058L1 5.50774H5.05286ZM12.1286 2.00025H8.26428L10.5497 5.28525L12.1286 2.00025ZM10.2787 5.96243H5.7211L7.99819 13.4487L10.2787 5.96243ZM10.1506 5.50774L7.98824 2.39967L5.84702 5.50774H10.1506ZM5.2459 5.96243H1.02206L7.62645 13.789L5.2459 5.96243ZM10.9472 5.50773H15L12.5343 2.20579L10.9472 5.50773ZM10.7541 5.96243L8.36979 13.7891L14.9778 5.96243L10.7541 5.96243Z" />
+    </IconBase>
+);
+
+export default RubyIcon;

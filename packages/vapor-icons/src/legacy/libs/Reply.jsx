@@ -1,0 +1,35 @@
+import React from 'react';
+
+import IconBase from '@vapor-icons/src/components/IconBase';
+import PropTypes from 'prop-types';
+
+function Reply(props) {
+    return (
+        <IconBase
+            viewBox="0 0 16 16"
+            xmlns="http://www.w3.org/2000/svg"
+            {...props}
+        >
+            <g>
+                <path style={{ fill: 'none' }} d="M0,0H16V16H0Z" />
+                <path d="M12.66667,10l-4,4L7.72,13.05333l2.39333-2.38667H2.66667v-8H4V9.33333h6.11333L7.72,6.94667,8.66667,6Z" />
+            </g>
+        </IconBase>
+    );
+}
+
+Reply.defaultProps = {
+    size: '1rem',
+    color: 'currentColor',
+    onClick: () => {},
+    style: {},
+};
+
+Reply.propTypes = {
+    size: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+    color: PropTypes.string,
+    onClick: PropTypes.func,
+    style: PropTypes.objectOf(PropTypes.string),
+};
+
+export default Reply;

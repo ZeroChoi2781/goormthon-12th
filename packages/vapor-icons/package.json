@@ -1,0 +1,47 @@
+{
+    "name": "@goorm-dev/vapor-icons",
+    "version": "0.22.0",
+    "description": "Vapor Icons",
+    "author": "goorm",
+    "keyword": "goorm",
+    "license": "ISC",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/goorm-dev/gds.git",
+        "directory": "packages/vapor-icons"
+    },
+    "publishConfig": {
+        "registry": "https://npm.pkg.github.com/"
+    },
+    "main": "dist/cjs/index.js",
+    "module": "dist/esm/index.js",
+    "types": "dist/index.d.ts",
+    "files": [
+        "dist"
+    ],
+    "sideEffects": false,
+    "browserslist": [
+        ">1%",
+        "last 4 versions",
+        "Firefox ESR",
+        "not ie < 9"
+    ],
+    "scripts": {
+        "build": "npm run build:typings && rollup -c ../../rollup.config.js",
+        "build:typings": "rm -rf dist/ && tsc --emitDeclarationOnly --declarationDir dist"
+    },
+    "engines": {
+        "node": ">=14"
+    },
+    "dependencies": {
+        "prop-types": "^15.7.2"
+    },
+    "peerDependencies": {
+        "react": ">=16.13.1"
+    },
+    "devDependencies": {
+        "@types/react": "^18.0.26",
+        "browserslist": "^4.13.0",
+        "react": "^16.13.1"
+    }
+}
