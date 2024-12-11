@@ -43,8 +43,8 @@ storybook-static
 #/packages/vapor-core
 /packages/vapor-date
 /packages/vapor-foundation
-/packages/vapor-hooks
-/packages/vapor-icons
+#/packages/vapor-hooks
+#/packages/vapor-icons
 /packages/vapor-tables
 /packages/vapor-theme
 /packages/vapor-tools
