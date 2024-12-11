@@ -1,0 +1,14 @@
+.container {
+    outline: 0.0625rem solid var(--border-color);
+    border-radius: var(--border-radius-300);
+    margin-bottom: 0;
+    overflow: hidden;
+    table-layout: fixed;
+
+    tbody tr:last-child {
+        th,
+        td {
+            border-bottom: none;
+        }
+    }
+}

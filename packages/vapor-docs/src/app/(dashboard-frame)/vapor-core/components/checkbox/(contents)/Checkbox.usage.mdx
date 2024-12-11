@@ -1,0 +1,34 @@
+import { Checkbox } from '@goorm-dev/vapor-core';
+import Accessibility from '@vapor-docs/src/components/common/Accessibility';
+import Iframe from '@vapor-docs/src/components/common/Iframe';
+import PropTable from '@vapor-docs/src/components/common/PropTable';
+
+import { ACCESSIBILITY_TABLE_DATA, PROPS_TABLE } from './Checkbox.data';
+
+<MdxLayout>
+    <MdxContent title="Import" componentName="Checkbox">
+         ##### Import
+        <CodeBlock>
+            ```js
+            import { Checkbox } from '@goorm-dev/vapor-core';
+            ```
+        </CodeBlock>
+    </MdxContent>
+    <MdxContent title="Examples" componentName="Checkbox">
+        ##### Examples
+        <Iframe
+            title='Checkbox Example'
+            src='/iframe/vapor-core/checkbox'
+        />   
+    </MdxContent>
+    <MdxContent title="Props" componentName="Checkbox">
+        ##### Props
+
+        <PropTable props={PROPS_TABLE} target={ Checkbox } />
+    </MdxContent>
+    <MdxContent>
+        ##### Accessibility
+        <Accessibility tableData = {ACCESSIBILITY_TABLE_DATA} />
+    </MdxContent>
+
+</MdxLayout>

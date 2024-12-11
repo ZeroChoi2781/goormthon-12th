@@ -1,0 +1,10 @@
+.container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-100);
+
+    &_disabled {
+        opacity: 0.32;
+    }
+}

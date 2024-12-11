@@ -1,0 +1,14 @@
+.container {
+    display: flex;
+    gap: var(--space-100);
+    padding: var(--space-150) var(--space-200);
+    border-radius: var(--border-radius-300);
+
+    @each $color in primary, success, warning, danger, contrast, hint {
+        &_#{$color} {
+            background-color: var(--#{$color}-transparent-8);
+            color: var(--text-#{$color}-alternative);
+            border: 1px solid var(--#{$color});
+        }
+    }
+}

@@ -1,0 +1,24 @@
+.layout {
+    width: 100%;
+}
+.container {
+    display: flex;
+    padding: var(--space-200, 1rem);
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-250, 1.25rem);
+    align-self: stretch;
+    width: 100%;
+    border-radius: var(--border-radius-500, 1rem);
+    background: var(--gray-050, #f7f7fa);
+    justify-content: space-between;
+}
+
+.item {
+    width: 100%;
+}
+.collapsed {
+    &:hover {
+        background-color: var(--gray-600-transparent-16);
+    }
+}

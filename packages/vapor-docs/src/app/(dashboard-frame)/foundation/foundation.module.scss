@@ -1,0 +1,13 @@
+.tabsList {
+    &[aria-orientation='horizontal'] {
+        padding: 0;
+    }
+
+    & > button[data-orientation='horizontal'] {
+        z-index: 1;
+    }
+}
+
+.tabsPanel {
+    padding: 2.5rem 0 0 0;
+}

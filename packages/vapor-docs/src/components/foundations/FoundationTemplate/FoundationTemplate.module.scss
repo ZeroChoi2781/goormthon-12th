@@ -1,0 +1,11 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-250, 1.25rem);
+}
+
+.header {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-100, 0.5rem);
+}

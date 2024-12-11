@@ -1,0 +1,187 @@
+[
+    {
+        "name": "Alert",
+        "description": "사용자의 액션에 대한 피드백 혹은 서비스에 대한 메시지를 제공합니다.",
+        "imageUrl": "https://statics.goorm.io/gds/docs/all-components/components/alert.svg"
+    },
+    {
+        "name": "Avatar",
+        "description": "사용자가 설정한 프로필 이미지 혹은 텍스트를 UI상에 나타냅니다.",
+        "imageUrl": "https://statics.goorm.io/gds/docs/all-components/components/avatar.svg"
+    },
+    {
+        "name": "Badge",
+        "description": "이미지, 컨텐츠 등의 상태 또는 분류를 시각적으로 표시합니다.",
+        "imageUrl": "https://statics.goorm.io/gds/docs/all-components/components/badge.svg"
+    },
+    {
+        "name": "Status",
+        "description": "상태를 시각적으로 표시합니다.",
+        "imageUrl": "https://statics.goorm.io/gds/docs/all-components/components/status.svg"
+    },
+    {
+        "name": "TopBanner",
+        "description": "특정 기능 또는 업데이트된 서비스에 대한 간략하고 중요한 메시지를 표시합니다.",
+        "imageUrl": "https://statics.goorm.io/gds/docs/all-components/components/top-banner.svg"
+    },
+    {
+        "name": "Breadcrumb",
+        "description": "해당 페이지의 경로 탐색 및 이동 링크로 사용합니다.",
+        "imageUrl": "https://statics.goorm.io/gds/docs/all-components/components/breadcrumb.svg"
+    },
+    {
+        "name": "BottomSheet",
+        "description": "주로 모바일에서 사용하는 컴포넌트로 화면 하단에 고정되어 추가 태스크를 진행합니다.",
+        "imageUrl": "https://statics.goorm.io/gds/docs/all-components/components/bottom-sheet.svg"
+    },
+    {
+        "name": "Button",
+        "description": "사용자에게 행동을 유도합니다.",
+        "imageUrl": "https://statics.goorm.io/gds/docs/all-components/components/button.svg"
+    },
+    {
+        "name": "ButtonGroup",
+        "description": "여러 개의 버튼을 그룹화하여 병렬적으로 나열합니다. 주로 탭 전환 혹은 토글의 역할을 합니다. ",
+        "imageUrl": "https://statics.goorm.io/gds/docs/all-components/components/button-group.svg"
+    },
+    {
+        "name": "ButtonToggleGroup",
+        "description": "여러개의 메뉴를 전환하며 선택할 수 있습니다. ",
+        "imageUrl": "https://statics.goorm.io/gds/docs/all-components/components/button-toggle-group.svg"
+    },
+    {
+        "name": "Carousel",
+        "description": "여러가지 이미지를 한 영역 안에서 회전하며 보여줄 때 사용합니다.",
+        "imageUrl": "https://statics.goorm.io/gds/docs/all-components/components/carousel.svg"
+    },
+    {
+        "name": "Card",
+        "description": "이미지와 텍스트, 일부 기능 버튼을 포함한 컨테이너로 콘텐츠를 제공합니다.",
+        "imageUrl": "https://statics.goorm.io/gds/docs/all-components/components/card.svg"
+    },
+    {
+        "name": "DashboardFrame",
+        "description": "Navbar, sidebar, title, card 등의 구성 요소를 대시보드 형태로 제공합니다.",
+        "imageUrl": "https://statics.goorm.io/gds/docs/all-components/components/dashboard-frame.svg"
+    },
+    {
+        "name": "DatePicker",
+        "description": "일, 월, 년을 탐색하여 특정 날짜나 기간을 선택할 수 있습니다.",
+        "imageUrl": "https://statics.goorm.io/gds/docs/all-components/components/date-picker.svg"
+    },
+    {
+        "name": "Dropdown",
+        "description": "옵션 리스트 중 하나 또는 여러개의 옵션을 선택할 때 사용합니다.",
+        "imageUrl": "https://statics.goorm.io/gds/docs/all-components/components/dropdown.svg"
+    },
+    {
+        "name": "FloatingActionButton",
+        "description": "화면 스크롤과 관계 없이 위치가 고정된 버튼으로 화면의 핵심이 되는 태스크를 수행할 수 있습니다.",
+        "imageUrl": "https://statics.goorm.io/gds/docs/all-components/components/floating-action-button.svg"
+    },
+    {
+        "name": "FormGroup",
+        "description": "input과 form elements를 함께 제공하여 input을 입력할 때 상세한 정보를 확인할 수 있습니다.",
+        "imageUrl": "https://statics.goorm.io/gds/docs/all-components/components/form-group.svg"
+    },
+    {
+        "name": "FormElements",
+        "description": "인풋에 대한 정보 또는 피드백을 제공합니다.",
+        "imageUrl": "https://statics.goorm.io/gds/docs/all-components/components/form-elements.svg"
+    },
+    {
+        "name": "Footer",
+        "description": "페이지 최하단에 위치해 저작권 정보, 연락처, 사이트 맵 등의 서비스에 대한 정보를 제공합니다.",
+        "imageUrl": "https://statics.goorm.io/gds/docs/all-components/components/footer.svg"
+    },
+    {
+        "name": "GoormLoader",
+        "description": "콘텐츠를 불러올 때 사용자가 대기 중임을 시각적으로 표시합니다.",
+        "imageUrl": "https://statics.goorm.io/gds/docs/all-components/components/goorm-loader.svg"
+    },
+    {
+        "name": "Input",
+        "description": "사용자가 데이터를 입력할 수 있도록 텍스트, 숫자 등 다양한 형식의 입력 필드를 제공합니다.",
+        "imageUrl": "https://statics.goorm.io/gds/docs/all-components/components/input.svg"
+    },
+    {
+        "name": "Modal",
+        "description": "현재 페이지에 오버레이로 표시해 사용자가 주요한 작업에 집중할 수 있도록 합니다. ",
+        "imageUrl": "https://statics.goorm.io/gds/docs/all-components/components/modal.svg"
+    },
+    {
+        "name": "Nav",
+        "description": "다양한 탭 또는 페이지를 표시하여 사용자가 탐색할 수 있게 합니다. ",
+        "imageUrl": "https://statics.goorm.io/gds/docs/all-components/components/nav.svg"
+    },
+    {
+        "name": "Pagination",
+        "description": "많은 양의 콘텐츠를 여러 페이지로 나눠 각 페이지 간의 이동을 쉽게 돕습니다.",
+        "imageUrl": "https://statics.goorm.io/gds/docs/all-components/components/pagination.svg"
+    },
+    {
+        "name": "Popover",
+        "description": "사용자가 특정 요소를 클릭 혹은 호버할 때 추가적인 도움말이나 정보를 표시합니다. ",
+        "imageUrl": "https://statics.goorm.io/gds/docs/all-components/components/popover.svg"
+    },
+    {
+        "name": "Progress",
+        "description": "로딩, 업로드, 다운로드 등 작업의 진행 상태를 실시간으로 사용자에게 보여줍니다.",
+        "imageUrl": "https://statics.goorm.io/gds/docs/all-components/components/progress.svg"
+    },
+    {
+        "name": "Rates",
+        "description": "사용자가 별점으로 특정 항목을 평가할 수 있도록 합니다.",
+        "imageUrl": "https://statics.goorm.io/gds/docs/all-components/components/rates.svg"
+    },
+    {
+        "name": "Scrollbar",
+        "description": "콘텐츠의 가로 또는 세로 위치를 나타내고, 스크롤바를 움직여서 내용 전체를 볼 수 있습니다.",
+        "imageUrl": "https://statics.goorm.io/gds/docs/all-components/components/scrollbar.svg"
+    },
+    {
+        "name": "Skeleton",
+        "description": "데이터를 가져오는 동안 콘텐츠를 표시합니다.",
+        "imageUrl": "https://statics.goorm.io/gds/docs/all-components/components/skeleton.svg"
+    },
+    {
+        "name": "SideNav",
+        "description": "페이지를 이동할 수 있는 메뉴로 현재 사용자가 어느  페이지에 위치하는지 알려줍니다.",
+        "imageUrl": "https://statics.goorm.io/gds/docs/all-components/components/side-nav.svg"
+    },
+    {
+        "name": "SidePanel",
+        "description": "옆쪽에서 슬라이드 되어 나타나는 컴포넌트로 현재  컨텍스트와 관련된 액션 또는 추가 정보 표시됩니다.",
+        "imageUrl": "https://statics.goorm.io/gds/docs/all-components/components/side-panel.svg"
+    },
+    {
+        "name": "Spinner",
+        "description": "실행 중인 프로세스의 현 상태와 완료까지 잔여 시간을 정확히 알 수 없을때 사용합니다.",
+        "imageUrl": "https://statics.goorm.io/gds/docs/all-components/components/spinner.svg"
+    },
+    {
+        "name": "Table",
+        "description": "데이터를 구조화하여 표 형식으로 표시하기 위해  사용합니다.",
+        "imageUrl": "https://statics.goorm.io/gds/docs/all-components/components/table.svg"
+    },
+    {
+        "name": "TextButton",
+        "description": "다른 페이지로 안내하거나 현재 페이지에서 특정 작업 실행 안내 시 사용합니다.",
+        "imageUrl": "https://statics.goorm.io/gds/docs/all-components/components/text-button.svg"
+    },
+    {
+        "name": "Tooltip",
+        "description": "정보 요소를 호버 시에 상황에 맞는 도움말이나 정보를 표시합니다. ",
+        "imageUrl": "https://statics.goorm.io/gds/docs/all-components/components/tooltip.svg"
+    },
+    {
+        "name": "Tourtip",
+        "description": "사용자가 상호작용해야 하는 버튼과 같은 대화형 요소를 노출할 때 사용됩니다.",
+        "imageUrl": "https://statics.goorm.io/gds/docs/all-components/components/tourtip.svg"
+    },
+    {
+        "name": "Toast",
+        "description": "일시적으로 표시되는 자동 닫힘 메시지로 특정 상태나 액션에 대한 안내, 경고 등에 쓰입니다.",
+        "imageUrl": "https://statics.goorm.io/gds/docs/all-components/components/toast.svg"
+    }
+]

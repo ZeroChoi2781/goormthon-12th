@@ -1,0 +1,40 @@
+.container {
+    display: inline-flex;
+    align-items: center;
+    border-radius: var(--border-radius-300, 0.5rem);
+
+    &_sm {
+        gap: var(--space-025);
+        height: var(--dimension-250);
+        padding: 0 var(--space-075);
+
+        &pill {
+            border-radius: var(--border-radius-400);
+        }
+    }
+    &_md {
+        gap: var(--space-050);
+        height: var(--dimension-300);
+        padding: 0 var(--space-100);
+
+        &pill {
+            border-radius: var(--border-radius-400);
+        }
+    }
+    &_lg {
+        gap: var(--space-075);
+        height: var(--dimension-400);
+        padding: 0 var(--space-150);
+
+        &pill {
+            border-radius: var(--border-radius-500);
+        }
+    }
+
+    @each $color in primary, success, warning, danger, contrast, hint {
+        &_#{$color} {
+            background-color: var(--#{$color}-transparent-16);
+            color: var(--text-#{$color}-alternative);
+        }
+    }
+}

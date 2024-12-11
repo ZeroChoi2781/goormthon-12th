@@ -1,0 +1,45 @@
+import { Tabs } from '@goorm-dev/vapor-core';
+import Accessibility from '@vapor-docs/src/components/common/Accessibility';
+import Iframe from '@vapor-docs/src/components/common/Iframe';
+import PropTable from '@vapor-docs/src/components/common/PropTable';
+
+import {
+    ACCESSIBILITY_TABLE_DATA,
+    BUTTON_PROPS_TABLE,
+    PANEL_PROPS_TABLE,
+    PROPS_TABLE,
+} from './Tabs.data';
+
+<MdxLayout>
+    <MdxContent title="Import" componentName="Tabs">
+         ##### Import
+        <CodeBlock>
+            ```js
+            import { Tabs } from '@goorm-dev/vapor-core';
+            ```
+        </CodeBlock>
+    </MdxContent>
+    <MdxContent title="Examples" componentName="Tabs">
+        ##### Examples
+        <Iframe
+            title='Tabs Example'
+            src='/iframe/vapor-core/tabs'
+        />   
+    </MdxContent>
+    <MdxContent title="Tabs Props" componentName="Tabs">
+        ##### Tabs Props
+
+        <PropTable props={PROPS_TABLE} target={ Tabs.Button } />
+        ##### Tabs.Button Props
+
+        <PropTable props={BUTTON_PROPS_TABLE} target={ Tabs } />
+        ##### Tabs.Panel Props
+
+        <PropTable props={PANEL_PROPS_TABLE} target={ Tabs.Panel } />
+    </MdxContent>
+    <MdxContent>
+        ##### Accessibility
+        <Accessibility tableData = {ACCESSIBILITY_TABLE_DATA} />
+    </MdxContent>
+
+</MdxLayout>

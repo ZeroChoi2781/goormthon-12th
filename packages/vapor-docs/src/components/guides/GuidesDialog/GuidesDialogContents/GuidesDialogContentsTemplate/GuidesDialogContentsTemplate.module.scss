@@ -1,0 +1,17 @@
+.list {
+    padding-left: 1.5rem;
+    margin-bottom: 0;
+    gap: var(--space-300);
+}
+
+.content {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-050, 4px);
+    align-self: stretch;
+}
+
+.heading {
+    font-weight: var(--font-weight-700);
+}

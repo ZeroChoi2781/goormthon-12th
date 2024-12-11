@@ -1,0 +1,40 @@
+import { Switch } from '@goorm-dev/vapor-core';
+import Accessibility from '@vapor-docs/src/components/common/Accessibility';
+import Iframe from '@vapor-docs/src/components/common/Iframe';
+import PropTable from '@vapor-docs/src/components/common/PropTable';
+
+import {
+    ACCESSIBILITY_TABLE_DATA,
+    LABEL_PROPS_TABLE,
+    PROPS_TABLE,
+} from './Switch.data';
+
+<MdxLayout>
+    <MdxContent title="Import" componentName="Switch">
+         ##### Import
+        <CodeBlock>
+            ```js
+            import { Switch } from '@goorm-dev/vapor-core';
+            ```
+        </CodeBlock>
+    </MdxContent>
+    <MdxContent title="Examples" componentName="Switch">
+        ##### Examples
+        <Iframe
+            title='Switch Example'
+            src='/iframe/vapor-core/switch'
+        />   
+    </MdxContent>
+    <MdxContent>
+        ##### Switch Props
+        <PropTable props={PROPS_TABLE} target={ Switch } />
+
+        ##### Switch.Label Props
+        <PropTable props={LABEL_PROPS_TABLE} target={ Switch.Label } />
+    </MdxContent>
+    <MdxContent>
+        ##### Accessibility
+        <Accessibility tableData = {ACCESSIBILITY_TABLE_DATA} />
+    </MdxContent>
+
+</MdxLayout>

@@ -1,0 +1,33 @@
+.field {
+    border: 0.0625rem solid var(--border-color);
+    background-color: var(--background-normal);
+    transition: border-color 0.25s ease;
+    width: 100%;
+    color: var(--text-alternative);
+
+    &:focus,
+    &:active,
+    &:focus:hover {
+        border: 0.0625rem solid var(--primary);
+        outline: none;
+    }
+    &:hover {
+        border: 0.0625rem solid var(--border-hover);
+    }
+
+    &_invalid {
+        border: 0.0625rem solid var(--danger);
+        &:focus,
+        &:active,
+        &:focus:hover {
+            border: 0.0625rem solid var(--danger);
+        }
+        &:hover {
+            border: 0.0625rem solid var(--danger);
+        }
+    }
+
+    &:disabled {
+        pointer-events: none;
+    }
+}

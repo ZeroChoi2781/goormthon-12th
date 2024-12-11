@@ -1,0 +1,11 @@
+.container {
+    & + & {
+        margin-top: 2.5rem /* 40px -> 2.5rem */;
+    }
+}
+
+.boxes {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}

@@ -1,0 +1,51 @@
+import { Card } from '@goorm-dev/vapor-core';
+import Iframe from '@vapor-docs/src/components/common/Iframe';
+import PropTable from '@vapor-docs/src/components/common/PropTable';
+
+import {
+    BODY_PROPS_TABLE,
+    FOOTER_PROPS_TABLE,
+    HEADER_PROPS_TABLE,
+    PROPS_TABLE,
+    TITLE_PROPS_TABLE,
+} from './Card.data';
+
+<MdxLayout>
+    <MdxContent title="Import" componentName="Card">
+         ##### Import
+        <CodeBlock>
+            ```js
+            import { Card } from '@goorm-dev/vapor-core';
+            ```
+        </CodeBlock>
+    </MdxContent>
+    <MdxContent title="Examples" componentName="Card">
+        ##### Examples
+        <Iframe
+            title='Card Example'
+            src='/iframe/vapor-core/card'
+        />   
+    </MdxContent>
+    <MdxContent title="Card Props" componentName="Card">
+        ##### Card Props
+
+        <PropTable props={PROPS_TABLE} target={ Card } />
+
+        ##### Card.Header Props
+
+        <PropTable props={HEADER_PROPS_TABLE} target={ Card } />
+
+         ##### Card.Title Props
+
+        <PropTable props={TITLE_PROPS_TABLE} target={ Card } />
+
+         ##### Card.Body Props
+
+        <PropTable props={BODY_PROPS_TABLE} target={ Card } />
+
+         ##### Card.Footer Props
+
+        <PropTable props={FOOTER_PROPS_TABLE} target={ Card } />
+    </MdxContent>
+
+</MdxLayout>

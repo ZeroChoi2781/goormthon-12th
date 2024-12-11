@@ -1,0 +1,36 @@
+.container {
+    width: 10rem;
+    flex: 0 0 auto;
+    position: sticky;
+    top: 6.875rem;
+    max-height: calc(-5rem + 100vh);
+
+    &_header {
+        margin-bottom: 0;
+    }
+
+    &_list {
+        margin: 0;
+        padding-inline-start: 0;
+        padding-top: 0.5rem;
+        padding-bottom: 0.5rem;
+    }
+
+    &_listItem {
+        line-height: 1.25rem;
+        padding: 0.375rem 0.5rem;
+        list-style: none;
+
+        & > a {
+            color: var(--gray-700);
+        }
+
+        &-h6 {
+            list-style: inside;
+        }
+    }
+
+    &-hidden {
+        display: none;
+    }
+}

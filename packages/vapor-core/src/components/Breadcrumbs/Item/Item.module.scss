@@ -1,0 +1,19 @@
+$font-weight-regular: var(--font-weight-regular);
+
+.item {
+    &:hover,
+    &:focus,
+    &:active {
+        text-decoration: none;
+        color: var(--text-hint);
+    }
+    color: var(--text-hint);
+}
+
+.active {
+    color: var(--text-primary);
+    pointer-events: none;
+    &:hover {
+        color: var(--text-primary);
+    }
+}

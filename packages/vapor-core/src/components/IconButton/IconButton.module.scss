@@ -1,0 +1,113 @@
+.button {
+    border-radius: var(--border-radius-300);
+
+    display: flex;
+    padding: 0;
+    align-items: center;
+    justify-content: center;
+
+    &_sm {
+        height: var(--dimension-300);
+        width: var(--dimension-300);
+    }
+
+    &_md {
+        height: var(--dimension-400);
+        width: var(--dimension-400);
+    }
+
+    &_lg {
+        height: var(--dimension-500);
+        width: var(--dimension-500);
+    }
+
+    &_xl {
+        height: var(--dimension-600);
+        width: var(--dimension-600);
+    }
+
+    &_rounded {
+        border-radius: var(--border-radius-900);
+    }
+
+    &:disabled {
+        opacity: 0.32;
+        pointer-events: none;
+    }
+    @each $color in primary, secondary, success, warning, danger, contrast, hint
+    {
+        &_#{$color} {
+            &fill {
+                background-color: var(--#{$color});
+                color: if(
+                    $color == 'secondary',
+                    var(--text-secondary-alternative),
+                    var(--text-light)
+                );
+                border: none;
+
+                &:hover,
+                &:focus {
+                    background-color: var(--#{$color}-hover);
+                }
+
+                &:active {
+                    background-color: var(--#{$color}-active);
+                }
+            }
+
+            &outline {
+                background-color: var(--#{$color}-transparent-8);
+                color: var(--text-#{$color}-alternative);
+                border: 0.0625rem solid var(--#{$color});
+
+                &:hover,
+                &:focus {
+                    background-color: var(--#{$color}-transparent-16);
+                }
+
+                &:active {
+                    background-color: var(--#{$color}-transparent-24);
+                }
+            }
+
+            &invisible {
+                color: var(--text-#{$color});
+                background-color: transparent;
+                border: none;
+
+                &:hover,
+                &:focus {
+                    background-color: var(--gray-600-transparent-8);
+                }
+
+                &:active {
+                    color: var(--text-#{$color}-alternative);
+                    background-color: var(gray-600-transparent-16);
+                }
+            }
+        }
+    }
+}
+
+.icon {
+    &_sm {
+        width: var(--dimension-200);
+        height: var(--dimension-200);
+    }
+
+    &_md {
+        width: var(--dimension-200);
+        height: var(--dimension-200);
+    }
+
+    &_lg {
+        width: var(--dimension-250);
+        height: var(--dimension-250);
+    }
+
+    &_xl {
+        width: var(--dimension-300);
+        height: var(--dimension-300);
+    }
+}

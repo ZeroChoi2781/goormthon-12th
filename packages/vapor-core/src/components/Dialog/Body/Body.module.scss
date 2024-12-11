@@ -1,0 +1,13 @@
+.body {
+    display: block;
+
+    width: 100%;
+    height: auto;
+    padding: 0 var(--space-300);
+
+    overflow-y: auto;
+
+    &_expanded {
+        padding: 0;
+    }
+}

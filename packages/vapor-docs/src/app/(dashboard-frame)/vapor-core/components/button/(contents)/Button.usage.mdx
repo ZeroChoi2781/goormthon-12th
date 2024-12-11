@@ -1,0 +1,29 @@
+import { Button } from '@goorm-dev/vapor-core';
+import Iframe from '@vapor-docs/src/components/common/Iframe';
+import PropTable from '@vapor-docs/src/components/common/PropTable';
+
+import { PROPS_TABLE } from './Button.data';
+
+<MdxLayout>
+    <MdxContent title="Import" componentName="Button">
+         ##### Import
+        <CodeBlock>
+            ```js
+            import { Button } from '@goorm-dev/vapor-core';
+            ```
+        </CodeBlock>
+    </MdxContent>
+    <MdxContent title="Examples" componentName="Button">
+        ##### Examples
+        <Iframe
+            title='Button Example'
+            src='/iframe/vapor-core/button'
+        />   
+    </MdxContent>
+    <MdxContent title="Props" componentName="Button">
+        ##### Props
+
+        <PropTable props={PROPS_TABLE} target={ Button } />
+    </MdxContent>
+
+</MdxLayout>

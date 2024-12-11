@@ -1,0 +1,24 @@
+.label {
+    color: var(--text-light);
+
+    &_sm {
+        font-size: var(--font-size-050);
+        font-weight: var(--font-weight-500);
+        line-height: var(--font-size-050);
+    }
+    &_md {
+        font-size: var(--font-size-100);
+        font-weight: var(--font-weight-500);
+        line-height: var(--font-size-100);
+    }
+    &_lg {
+        font-size: var(--font-size-200);
+        font-weight: var(--font-weight-700);
+        line-height: var(--font-size-200);
+    }
+    &_xl {
+        font-size: var(--font-size-300);
+        font-weight: var(--font-weight-700);
+        line-height: var(--font-size-300);
+    }
+}

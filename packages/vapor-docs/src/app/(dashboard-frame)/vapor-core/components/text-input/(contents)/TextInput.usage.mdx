@@ -1,0 +1,43 @@
+import { TextInput } from '@goorm-dev/vapor-core';
+import Accessibility from '@vapor-docs/src/components/common/Accessibility';
+import Iframe from '@vapor-docs/src/components/common/Iframe';
+import PropTable from '@vapor-docs/src/components/common/PropTable';
+
+import {
+    ACCESSIBILITY_TABLE_DATA,
+    FIELD_PROPS_TABLE,
+    LABEL_PROPS_TABLE,
+    PROPS_TABLE,
+} from './TextInput.data';
+
+<MdxLayout>
+    <MdxContent title="Import" componentName="TextInput">
+         ##### Import
+        <CodeBlock>
+            ```js
+            import { TextInput } from '@goorm-dev/vapor-core';
+            ```
+        </CodeBlock>
+    </MdxContent>
+    <MdxContent title="Examples" componentName="TextInput">
+        ##### Examples
+        <Iframe
+            title='TextInput Example'
+            src='/iframe/vapor-core/text-input'
+        />   
+    </MdxContent>
+    <MdxContent title="Props\n        ###### TextInput" componentName="TextInput">
+        ##### Props
+        ###### TextInput
+        <PropTable props={PROPS_TABLE} target={ TextInput } />
+        ###### TextInput.Field
+        <PropTable props={FIELD_PROPS_TABLE} target={ TextInput } />
+        ###### TextInput.Label
+        <PropTable props={LABEL_PROPS_TABLE} target={ TextInput } />
+    </MdxContent>
+    <MdxContent>
+        ##### Accessibility
+        <Accessibility tableData = {ACCESSIBILITY_TABLE_DATA} />
+    </MdxContent>
+
+</MdxLayout>

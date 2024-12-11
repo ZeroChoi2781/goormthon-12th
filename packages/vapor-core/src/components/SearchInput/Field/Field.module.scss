@@ -1,0 +1,143 @@
+$container-height: (
+    sm: var(--dimension-300),
+    md: var(--dimension-400),
+    lg: var(--dimension-500),
+    xl: var(--dimension-600),
+);
+
+$container-padding: (
+    sm: var(--space-000) var(--space-100),
+    md: var(--space-000) var(--space-150),
+    lg: var(--space-000) var(--space-200),
+    xl: var(--space-000) var(--space-300),
+);
+
+$container-gap: (
+    sm: var(--space-100),
+    md: var(--space-100),
+    lg: var(--space-100),
+    xl: var(--space-150),
+);
+
+$container-hasContent: (
+    sm: var(--space-050),
+    md: var(--space-050),
+    lg: var(--space-075),
+    xl: var(--space-150),
+);
+
+@mixin container-size($size) {
+    height: map-get($map: $container-height, $key: $size);
+    padding: map-get($map: $container-padding, $key: $size);
+    gap: map-get($map: $container-gap, $key: $size);
+
+    &.container_hasContents {
+        padding-right: map-get($map: $container-hasContent, $key: $size);
+        gap: map-get($map: $container-gap, $key: lg);
+    }
+}
+
+.container {
+    display: flex;
+    align-items: center;
+    justify-content: start;
+
+    border: 0.0625rem solid var(--border-color);
+    border-radius: var(--border-radius-300);
+    background-color: var(--background-normal);
+    transition: border-color 0.25s ease;
+    width: 100%;
+
+    &:focus-within,
+    &:active,
+    &:focus-within:hover {
+        border-color: var(--primary);
+        outline: none;
+    }
+    &:hover {
+        border-color: var(--border-hover);
+    }
+
+    &_invalid {
+        border-color: var(--danger);
+
+        &:hover,
+        &:focus-within,
+        &:active,
+        &:focus-within:hover {
+            border-color: var(--danger);
+        }
+    }
+
+    &_sm {
+        @include container-size(sm);
+    }
+
+    &_md {
+        @include container-size(md);
+    }
+
+    &_lg {
+        @include container-size(lg);
+    }
+
+    &_xl {
+        @include container-size(xl);
+    }
+}
+
+.field {
+    width: 100%;
+    flex: 1;
+    border: none;
+    border-radius: 0 var(--border-radius-300) var(--border-radius-300) 0;
+
+    color: var(--text-normal);
+    background-color: transparent;
+    outline: none;
+
+    &::placeholder {
+        color: var(--text-hint);
+    }
+
+    &::-webkit-search-cancel-button {
+        display: none;
+    }
+
+    &_sm {
+        font-size: var(--font-size-050);
+    }
+
+    &_md {
+        font-size: var(--font-size-075);
+    }
+
+    &_lg {
+        font-size: var(--font-size-075);
+    }
+
+    &_xl {
+        font-size: var(--font-size-100);
+    }
+}
+
+.searchIcon {
+    fill: var(--text-hint);
+
+    &_sm {
+        width: var(--dimension-200);
+        height: var(--dimension-200);
+    }
+    &_md {
+        width: var(--dimension-200);
+        height: var(--dimension-200);
+    }
+    &_lg {
+        width: var(--dimension-250);
+        height: var(--dimension-250);
+    }
+    &_xl {
+        width: var(--dimension-300);
+        height: var(--dimension-300);
+    }
+}

@@ -1,0 +1,97 @@
+.navLink {
+    display: flex;
+    align-items: center;
+    gap: var(--space-075, 0.375rem);
+
+    color: var(--text-alternative, #525463);
+    cursor: pointer;
+
+    &:hover,
+    &:focus {
+        text-decoration: none;
+    }
+
+    transition:
+        color 0.12s ease,
+        background-color 0.12s ease,
+        border-color 0.12s ease,
+        box-shadow 0.12s ease;
+
+    &_left {
+        justify-content: flex-start;
+    }
+    &_center {
+        justify-content: center;
+    }
+    &_right {
+        justify-content: flex-end;
+    }
+
+    &_sm {
+        height: var(--dimension-300, 1.5rem);
+        padding: 0 var(--space-100, 0.5rem);
+    }
+    &_md {
+        height: var(--dimension-400, 2rem);
+        padding: 0 var(--space-150, 0.75rem);
+    }
+    &_lg {
+        height: var(--dimension-500, 2.5rem);
+        padding: 0 var(--space-200, 1rem);
+    }
+    &_xl {
+        height: var(--dimension-600, 3rem);
+        padding: 0 var(--space-300, 1.5rem);
+    }
+
+    &_pill {
+        border-radius: var(--border-radius-300, 0.5rem);
+        background-color: var(--hint-transparent-8, rgba(108, 110, 126, 0.08));
+
+        &:hover,
+        &:focus-visible {
+            color: var(--text-alternative, #525463);
+            background-color: var(
+                --hint-transparent-16,
+                rgba(108, 110, 126, 0.16)
+            );
+        }
+
+        &[data-disabled] {
+            opacity: 0.32;
+            background: var(--hint-transparent-8, rgba(108, 110, 126, 0.08));
+            pointer-events: none;
+        }
+
+        &[data-active] {
+            color: var(--text-primary-alternative, #1959b8);
+            background-color: var(--primary-transparent-24, #448efe3d);
+        }
+    }
+
+    &_text {
+        border-radius: var(--border-radius-300, 0.5rem);
+
+        &:hover {
+            color: var(--text-alternative, #525463);
+            background-color: var(
+                --hint-transparent-8,
+                rgba(108, 110, 126, 0.08)
+            );
+        }
+
+        &:focus-visible {
+            color: var(--text-primary, #1d6ce0);
+        }
+
+        &[data-active] {
+            color: var(--text-primary, #1d6ce0);
+        }
+
+        &[data-disabled] {
+            opacity: 0.32;
+            color: var(--text-alternative, rgba(82, 84, 99, 1));
+            pointer-events: none;
+        }
+    }
+}

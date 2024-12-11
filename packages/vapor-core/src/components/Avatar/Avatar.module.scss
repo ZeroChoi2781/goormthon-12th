@@ -1,0 +1,46 @@
+@mixin size-and-border-radius($size, $borderRadius) {
+    width: #{$size};
+    height: #{$size};
+
+    &[data-square='true'] {
+        border-radius: #{$borderRadius};
+    }
+}
+
+.avatar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    border: 0.0625rem solid var(--border-color);
+    border-radius: 50%;
+    overflow: hidden;
+
+    padding: 0;
+
+    // 크기별 및 모서리 반경별 스타일 적용
+    &_sm {
+        @include size-and-border-radius(
+            var(--dimension-300),
+            var(--border-radius-200)
+        );
+    }
+    &_md {
+        @include size-and-border-radius(
+            var(--dimension-400),
+            var(--border-radius-300)
+        );
+    }
+    &_lg {
+        @include size-and-border-radius(
+            var(--dimension-500),
+            var(--border-radius-400)
+        );
+    }
+    &_xl {
+        @include size-and-border-radius(
+            var(--dimension-600),
+            var(--border-radius-400)
+        );
+    }
+}

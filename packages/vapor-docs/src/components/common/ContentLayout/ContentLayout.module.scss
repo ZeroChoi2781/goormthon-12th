@@ -1,0 +1,62 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    gap: 2.5rem;
+    padding-bottom: 3rem;
+}
+
+.header {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1.25rem;
+    &_description {
+        white-space: pre-wrap;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+
+        &_h1 {
+            margin-bottom: 0;
+        }
+    }
+
+    &_componentLinkInfo {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        align-self: stretch;
+        justify-content: space-between;
+    }
+}
+
+.outLinkButton {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.navTabs {
+    width: 100%;
+}
+
+.description {
+    white-space: pre-wrap;
+}
+
+.headerGroup {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.tabContent {
+    display: flex;
+    align-items: start;
+    justify-content: space-between;
+    gap: 5rem;
+}
+
+.tabPane {
+    width: 100%;
+}

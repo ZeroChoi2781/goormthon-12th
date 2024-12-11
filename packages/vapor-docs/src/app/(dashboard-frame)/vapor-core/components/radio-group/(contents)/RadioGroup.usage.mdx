@@ -1,0 +1,46 @@
+import { RadioGroup } from '@goorm-dev/vapor-core';
+import Iframe from '@vapor-docs/src/components/common/Iframe';
+import PropTable from '@vapor-docs/src/components/common/PropTable';
+
+import {
+    INDICATOR_PROPS_TABLE,
+    ITEM_PROPS_TABLE,
+    LABEL_PROPS_TABLE,
+    PROPS_TABLE,
+} from './RadioGroup.data';
+
+<MdxLayout>
+    <MdxContent>
+         ##### Import
+        <CodeBlock>
+            ```js
+            import { RadioGroup } from '@goorm-dev/vapor-core';
+            ```
+        </CodeBlock>
+    </MdxContent>
+    <MdxContent>
+        ##### Examples
+        <Iframe
+            title='RadioGroup Example'
+            src='/iframe/vapor-core/radio-group'
+        />   
+    </MdxContent>
+    <MdxContent>
+        ##### RadioGroup Props
+        
+        <PropTable props={PROPS_TABLE} target={ RadioGroup } />
+
+        ##### RadioGroup.Item Props
+
+        <PropTable props={ITEM_PROPS_TABLE} target={ RadioGroup.Item } />
+
+        ##### RadioGroup.Indicator Props
+
+        <PropTable props={INDICATOR_PROPS_TABLE} target={ RadioGroup.Indicator } />
+
+        ##### RadioGroup.Label Props
+
+        <PropTable props={LABEL_PROPS_TABLE} target={ RadioGroup.Label } />
+    </MdxContent>
+
+</MdxLayout>

@@ -1,0 +1,42 @@
+import { Avatar } from '@goorm-dev/vapor-core';
+import Accessibility from '@vapor-docs/src/components/common/Accessibility';
+import Iframe from '@vapor-docs/src/components/common/Iframe';
+import PropTable from '@vapor-docs/src/components/common/PropTable';
+
+import {
+    ACCESSIBILITY_TABLE_DATA,
+    IMAGE_PROPS_TABLE,
+    PROPS_TABLE,
+} from './Avatar.data';
+
+<MdxLayout>
+    <MdxContent title="Import" componentName="Avatar">
+        ##### Import
+        <CodeBlock>
+            ```js
+            import { Avatar } from '@goorm-dev/vapor-core';
+            ```
+        </CodeBlock>
+    </MdxContent>
+    <MdxContent title="Examples" componentName="Avatar">
+        ##### Examples
+        <Iframe
+            title="Avatar Example"
+            src="/iframe/vapor-core/avatar"
+        />
+    </MdxContent>
+    <MdxContent title="Avatar Props" componentName="Avatar">
+        ##### Avatar Props
+
+        <PropTable props={PROPS_TABLE} target={Avatar} />
+
+        ##### Avatar.Image Props
+
+        <PropTable props={IMAGE_PROPS_TABLE} target={Avatar.Image} />
+    </MdxContent>
+    <MdxContent>
+        ##### Accessibility
+        <Accessibility tableData = {ACCESSIBILITY_TABLE_DATA} />
+    </MdxContent>
+
+</MdxLayout>

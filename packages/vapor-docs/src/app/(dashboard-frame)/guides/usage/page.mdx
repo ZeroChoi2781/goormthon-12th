@@ -1,0 +1,77 @@
+export const metadata = {
+    title: 'Usage',
+};
+
+# Usage
+
+Vapor 라이브러리의 [개발 Quick start](/guides/usage#quick-start) 및 문서화 사이트 [Vapor Docs 사용법](/guides/usage#docs-usage)을 안내합니다.
+
+## Quick Start
+
+[Vapor Installation](/guides/installation)을 완료하면 Vapor 라이브러리를 사용할 수 있습니다.
+
+```javascript
+import { Button, Input } from '@goorm-dev/vapor-components';
+import { useTrapFocus } from '@goorm-dev/vapor-hooks';
+import { SeachIcon } from '@goorm-dev/vapor-icons';
+
+function App() {
+    const ref = useRef < HTMLDivElement > null;
+    useTrapFocus({ trapContainer: ref, onEscape });
+
+    return (
+        <div ref={ref} role="dialog">
+            <Button color="primary">
+                Click
+                <SeachIcon />
+            </Button>
+
+            <Input type="text" placeholder="Enter your name" />
+        </div>
+    );
+}
+```
+
+### TypeScript Support
+
+Vapor는 TypeScript를 완벽히 지원합니다. TypeScript 프로젝트에서 Vapor 컴포넌트를 활용해보세요.
+
+```typescript
+import { ButtonProps } from '@goorm-dev/vapor-components';
+
+type MyButtonProps = ButtonProps & {
+    // Add custom props
+};
+```
+
+### Figma Resources
+
+Vapor 디자인 시스템 리소스는 Figma에서 확인할 수 있습니다. (Goorm staff only)
+
+-   [Vapor Core](https://www.figma.com/design/lEU9aqzv6l9E4XM3SST9op/Component-%5Bcore%5D?node-id=0-1&node-type=CANVAS&t=lyB6LtxuGmtu0lR9-0)
+-   [Vapor Components](https://www.figma.com/design/TBQ0vT0mdGz7aepjxgfdc3/Component-%5Bgoorm%5D?t=4aiqDTljgH0Yi8BO-0)
+-   [Vapor Foundation `goorm`](https://www.figma.com/design/hBtJQQNTICx64dUK8VsU3Z/Foundation-%5Bgoorm%5D?t=EnU9idrTquEtCfPE-0)
+-   [Vapor Foundation `kid`](https://www.figma.com/design/llq2j7bJwYENZq0f26xO33/Foundation-%5BKid%5D?t=EnU9idrTquEtCfPE-0)
+-   [Vapor Icons](https://www.figma.com/design/DVgbt41m23pnHjAL8ZYsD3/Icon-%5Bgoorm%5D?t=EnU9idrTquEtCfPE-0)
+-   [Vapor Resources](https://www.figma.com/design/hyiokiTlazRVYf0cfEvGUB/Resource?node-id=0-1&t=EnU9idrTquEtCfPE-0)
+
+#### Vapor Sync with Figma
+
+Vapor 라이브러리들은 Figma와 동기화되어 있습니다. 개발시에 Goorm Figma에 정의된 컴포넌트를 활용해 시안 개발을 할 수 있습니다.
+자세한 내용은 [Goorm Figma 사용법](https://www.notion.so/goorm/e3f3b415ab3c4eab9f14f6c01f2fdd2b?pvs=4#422850c582164552b36593aac3b433ff)을 참고하세요.
+
+Figma를 통해 아래 사항들을 확인할 수 있습니다.
+
+-   컴포넌트 명
+-   컴포넌트 속성 (props)
+-   컴포넌트 사용 규칙 (rules of use)
+
+## Docs Usage
+
+Vapor Docs는 Vapor 라이브러리의 공식 문서입니다.
+
+문서화 사이트에 대한 오류 제보 및 기능 제안은 [Github Issue](https://github.com/goorm-dev/gds/issues/new/choose)를 통해 제출해주세요.
+
+![vapo docs 가이드](https://statics.goorm.io/gds/docs/guide/guide-vapor-docs.png)
+
+<br />

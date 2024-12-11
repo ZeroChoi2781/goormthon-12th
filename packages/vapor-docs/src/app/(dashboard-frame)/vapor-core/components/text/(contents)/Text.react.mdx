@@ -1,0 +1,27 @@
+import { PROPS_TABLE } from './Text.data';
+import PropTable from '@vapor-docs/src/components/common/PropTable';
+import Iframe from '@vapor-docs/src/components/common/Iframe';
+import { Text } from '@goorm-dev/vapor-core';
+
+<MdxLayout>
+    <MdxContent>
+         ##### Import
+        <CodeBlock>
+            ```js
+            import { Text } from '@goorm-dev/vapor-core';
+            ```
+        </CodeBlock>
+    </MdxContent>
+    <MdxContent>
+        ##### Examples
+        <Iframe
+            title='Text Example'
+            src='/iframe/vapor-core/text'
+        />   
+    </MdxContent>
+    <MdxContent>
+        ##### Props
+
+        <PropTable props={PROPS_TABLE} target={ Text } />   
+    </MdxContent>
+</MdxLayout>

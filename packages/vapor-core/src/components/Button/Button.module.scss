@@ -1,0 +1,91 @@
+.container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: var(--border-radius-300);
+
+    &:disabled {
+        pointer-events: none;
+        opacity: 0.32;
+    }
+
+    &_stretch {
+        width: 100%;
+    }
+
+    &_sm {
+        gap: var(--space-050);
+        height: var(--size-300);
+        padding: 0 var(--space-100);
+    }
+    &_md {
+        gap: var(--space-075);
+        height: var(--size-400);
+        padding: 0 var(--space-150);
+    }
+    &_lg {
+        gap: var(--space-100);
+        height: var(--size-500);
+        padding: 0 var(--space-200);
+    }
+    &_xl {
+        gap: var(--space-100);
+        height: var(--size-600);
+        padding: 0 var(--space-300);
+    }
+
+    @each $color in primary, secondary, success, warning, danger, contrast, hint
+    {
+        &_#{$color} {
+            &fill {
+                background-color: var(--#{$color});
+                color: if(
+                    $color == 'secondary',
+                    var(--text-secondary-alternative),
+                    var(--text-light)
+                );
+                border: none;
+
+                &:hover,
+                &:focus {
+                    background-color: var(--#{$color}-hover);
+                }
+
+                &:active {
+                    background-color: var(--#{$color}-active);
+                }
+            }
+
+            &outline {
+                background-color: var(--#{$color}-transparent-8);
+                color: var(--text-#{$color}-alternative);
+                border: 0.0625rem solid var(--#{$color});
+
+                &:hover,
+                &:focus {
+                    background-color: var(--#{$color}-transparent-16);
+                }
+
+                &:active {
+                    background-color: var(--#{$color}-transparent-24);
+                }
+            }
+
+            &invisible {
+                color: var(--text-#{$color});
+                background-color: transparent;
+                border: none;
+
+                &:hover,
+                &:focus {
+                    background-color: var(--gray-600-transparent-8);
+                }
+
+                &:active {
+                    color: var(--text-#{$color}-alternative);
+                    background-color: var(gray-600-transparent-16);
+                }
+            }
+        }
+    }
+}

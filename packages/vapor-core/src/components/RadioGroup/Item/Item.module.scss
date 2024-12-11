@@ -1,0 +1,9 @@
+.item {
+    display: flex;
+    align-items: center;
+    gap: var(--space-100, 0.5rem);
+    &_disabled {
+        opacity: 0.32;
+        pointer-events: none;
+    }
+}

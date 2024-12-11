@@ -1,0 +1,10 @@
+.contentList {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-600);
+    width: 100%;
+    justify-content: center;
+    align-items: flex-start;
+    padding-left: 0;
+    margin-bottom: 0;
+}

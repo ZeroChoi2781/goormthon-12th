@@ -1,0 +1,80 @@
+[
+  {
+    "name": "Alert",
+    "description": "사용자의 액션에 대한 피드백 혹은 서비스에 대한 메시지를 제공합니다.",
+    "imageUrl": "https://statics.goorm.io/gds/docs/all-components/core/alert.svg",
+    "componentType": "Feedback"
+  },
+  {
+    "name": "Avatar",
+    "description": "사용자가 설정한 프로필 이미지 혹은 텍스트를 UI상에 나타냅니다.",
+    "imageUrl": "https://statics.goorm.io/gds/docs/all-components/core/avatar.svg",
+    "componentType": "Data Display"
+  },
+  {
+    "name": "Badge",
+    "description": "이미지, 컨텐츠 등의 상태 또는 분류를 시각적으로 표시합니다.",
+    "imageUrl": "https://statics.goorm.io/gds/docs/all-components/core/badge.svg",
+    "componentType": "Data Display"
+  },
+  {
+    "name": "Breadcrumbs",
+    "description": "해당 페이지의 경로 탐색 및 이동 링크로 사용합니다.",
+    "imageUrl": "https://statics.goorm.io/gds/docs/all-components/core/breadcrumbs.svg",
+    "componentType": "Navigation"
+  },
+  {
+    "name": "Button",
+    "description": "사용자에게 행동을 유도합니다.",
+    "imageUrl": "https://statics.goorm.io/gds/docs/all-components/core/button.svg",
+    "componentType": "Buttons"
+  },
+  {
+    "name": "Card",
+    "description": "이미지와 텍스트, 일부 기능 버튼을 포함한 컨테이너로 콘텐츠를 제공합니다.",
+    "imageUrl": "https://statics.goorm.io/gds/docs/all-components/core/card.svg",
+    "componentType": "Data Display"
+  },
+  {
+    "name": "Checkbox",
+    "description": "선택할 수 있는 옵션을 나타내는 요소로,여러 옵션 중에서 하나 이상을 선택할 수 있는 경우에 사용됩니다.",
+    "imageUrl": "https://statics.goorm.io/gds/docs/all-components/core/checkbox.svg",
+    "componentType": "Feedback"
+  },
+  {
+    "name": "Dialog",
+    "description": "현재 페이지에 오버레이로 표시해 사용자가 주요한 작업에 집중할 수 있도록 합니다. ",
+    "imageUrl": "https://statics.goorm.io/gds/docs/all-components/core/dialog.svg",
+    "componentType": "Overlay"
+  },
+  {
+    "name": "Dropdown",
+    "description": "옵션 리스트 중 하나 또는 여러개의 옵션을 선택할 때 사용합니다.",
+    "imageUrl": "https://statics.goorm.io/gds/docs/all-components/core/dropdown.svg",
+    "componentType": "Overlay"
+  },
+  {
+    "name": "IconButton",
+    "description": "특정 작업이나 기능을 나타내는 버튼으로, 텍스트 없이 아이콘만으로 명령을 전달합니다.",
+    "imageUrl": "https://statics.goorm.io/gds/docs/all-components/core/icon-button.svg",
+    "componentType": "Buttons"
+  },
+  {
+    "name": "Label",
+    "description": "특정 입력 요소나 기능을 설명하는 텍스트 요소로,  요구사항을 쉽게 이해할 수 있도록 돕습니다.",
+    "imageUrl": "https://statics.goorm.io/gds/docs/all-components/core/label.svg",
+    "componentType": "Typography"
+  },
+  {
+    "name": "Nav",
+    "description": "여러 콘텐츠 섹션 간에 전환할 수 있도록 돕는 요소입니다. 클릭 시 페이지 이동됩니다.",
+    "imageUrl": "https://statics.goorm.io/gds/docs/all-components/core/nav.svg",
+    "componentType": "Navigation"
+  },
+  {
+    "name": "Tabs",
+    "description": "여러 콘텐츠 섹션 간에 전환할 수 있도록 돕는 요소입니다. 페이지가 이동되지 않고 내부 요소가 변경됩니다.",
+    "imageUrl": "https://statics.goorm.io/gds/docs/all-components/core/tabs.svg",
+    "componentType": "Navigation"
+  }
+]

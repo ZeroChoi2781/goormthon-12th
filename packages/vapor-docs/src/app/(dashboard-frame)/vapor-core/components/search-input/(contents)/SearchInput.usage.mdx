@@ -1,0 +1,47 @@
+import { SearchInput } from '@goorm-dev/vapor-core';
+import Accessibility from '@vapor-docs/src/components/common/Accessibility';
+import Iframe from '@vapor-docs/src/components/common/Iframe';
+import PropTable from '@vapor-docs/src/components/common/PropTable';
+
+import {
+    ACCESSIBILITY_TABLE_DATA,
+    FIELD_PROPS_TABLE,
+    LABEL_PROPS_TABLE,
+    PROPS_TABLE,
+} from './SearchInput.data';
+
+<MdxLayout>
+    <MdxContent title="Import" componentName="SearchInput">
+         ##### Import
+        <CodeBlock>
+            ```js
+            import { SearchInput } from '@goorm-dev/vapor-core';
+            ```
+        </CodeBlock>
+    </MdxContent>
+    <MdxContent title="Examples" componentName="SearchInput">
+        ##### Examples
+        <Iframe
+            title='SearchInput Example'
+            src='/iframe/vapor-core/search-input'
+        />   
+    </MdxContent>
+    <MdxContent title="SearchInput Props" componentName="SearchInput">
+        ##### SearchInput Props
+
+        <PropTable props={PROPS_TABLE} target={ SearchInput } />
+
+        ##### SearchInput.Field Props
+
+        <PropTable props={FIELD_PROPS_TABLE} target={ SearchInput } />
+
+        ##### SearchInput.Label Props
+
+        <PropTable props={LABEL_PROPS_TABLE} target={ SearchInput } />
+    </MdxContent>
+    <MdxContent>
+        ##### Accessibility
+        <Accessibility tableData = {ACCESSIBILITY_TABLE_DATA} />
+    </MdxContent>
+
+</MdxLayout>

@@ -1,0 +1,123 @@
+.common {
+    margin: 0;
+}
+
+/** align */
+.left {
+    text-align: left;
+}
+.center {
+    text-align: center;
+}
+.right {
+    text-align: right;
+}
+
+/** heading */
+.heading1 {
+    font-size: var(--font-size-600);
+    font-weight: var(--font-weight-700);
+    line-height: var(--line-height-600);
+    letter-spacing: var(--letter-spacing-h1);
+}
+.heading2 {
+    font-size: var(--font-size-500);
+    font-weight: var(--font-weight-700);
+    line-height: var(--line-height-500);
+    letter-spacing: var(--letter-spacing-h2);
+}
+.heading3 {
+    font-size: var(--font-size-400);
+    font-weight: var(--font-weight-700);
+    line-height: var(--line-height-400);
+    letter-spacing: var(--letter-spacing-h3);
+}
+.heading4 {
+    font-size: var(--font-size-300);
+    font-weight: var(--font-weight-700);
+    line-height: var(--line-height-300);
+    letter-spacing: var(--letter-spacing-h4);
+}
+.heading5 {
+    font-size: var(--font-size-200);
+    font-weight: var(--font-weight-700);
+    line-height: var(--line-height-200);
+    letter-spacing: var(--letter-spacing-h5);
+}
+.heading6 {
+    font-size: var(--font-size-100);
+    font-weight: var(--font-weight-500);
+    line-height: var(--line-height-100);
+    letter-spacing: var(--letter-spacing-h6);
+}
+
+/** subtitle */
+.subtitle1 {
+    font-size: var(--font-size-075);
+    font-weight: var(--font-weight-500);
+    line-height: var(--line-height-075);
+    letter-spacing: var(--letter-spacing-s1);
+}
+.subtitle2 {
+    font-size: var(--font-size-050);
+    font-weight: var(--font-weight-500);
+    line-height: var(--line-height-050);
+    letter-spacing: var(--letter-spacing-s2);
+}
+
+/** body */
+.body1 {
+    font-size: var(--font-size-100);
+    font-weight: var(--font-weight-400);
+    line-height: var(--line-height-100);
+    letter-spacing: var(--letter-spacing-b1);
+}
+.body2 {
+    font-size: var(--font-size-075);
+    font-weight: var(--font-weight-400);
+    line-height: var(--line-height-075);
+    letter-spacing: var(--letter-spacing-b2);
+}
+.body3 {
+    font-size: var(--font-size-050);
+    font-weight: var(--font-weight-400);
+    line-height: var(--line-height-050);
+    letter-spacing: var(--letter-spacing-b3);
+}
+.body4 {
+    font-size: var(--font-size-025);
+    font-weight: var(--font-weight-400);
+    line-height: var(--line-height-025);
+    letter-spacing: var(--letter-spacing-b4);
+}
+
+@mixin text-color($color) {
+    .text-#{$color} {
+        color: var(--text-#{$color});
+    }
+}
+
+@mixin text-color-with-alternative($color) {
+    @include text-color($color);
+
+    .text-#{$color}-alternative {
+        color: var(--text-#{$color}-alternative);
+    }
+}
+
+/** color */
+@include text-color-with-alternative(primary);
+@include text-color-with-alternative(secondary);
+@include text-color-with-alternative(success);
+@include text-color-with-alternative(warning);
+@include text-color-with-alternative(danger);
+@include text-color-with-alternative(hint);
+@include text-color-with-alternative(contrast);
+@include text-color(light);
+@include text-color(normal);
+@include text-color(alternative);
+@include text-color(exception);
+
+.inherit {
+    color: inherit;
+}

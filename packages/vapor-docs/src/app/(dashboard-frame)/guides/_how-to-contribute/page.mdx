@@ -1,0 +1,37 @@
+export const metadata = {
+    title: 'How to Contribute',
+};
+
+# How to Contribute
+
+## Branch Rules
+
+-   Git flow 전략을 따릅니다. (`feature`, `release`, `hotfix`, 등)
+-   브랜치 이름에는 주제나 기능에 대한 설명이 포함되어야 합니다.
+-   PR이 병합되면 브랜치는 삭제됩니다.
+
+#### 예시
+
+```shell
+git flow feature start feature/create-avatar
+```
+
+## Commit Convention
+
+-   PR merge시, 메인 테이너가 직접 Commit을 작성하고, Squash & Merge합니다.
+-   작업 중에 발생한 Intermediate Commit Convention은 개발자의 재량에 맡깁니다.
+
+## PR
+
+-   PR Open시에 자동으로 PR 템플렛이 생성됩니다. 해당 양식에 맞게 작성해주세요.
+-   merge와 정식버전 릴리즈는 GDS 스쿼드에서 진행할 예정입니다.
+
+## 실험 버전 릴리즈
+
+-   [깃허브 액션](https://github.com/goorm-dev/gds/actions/workflows/dev-deploy-packages-on-github-package.yml)에서 Run workflow를 실행하면 실험 버전이 릴리즈됩니다.
+
+## Issues
+
+-   이 [링크](https://github.com/goorm-dev/gds/issues/new/choose)를 통해 Github에 issue를 제보해주세요.
+
+<br />

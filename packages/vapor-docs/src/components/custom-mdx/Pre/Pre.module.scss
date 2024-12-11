@@ -1,0 +1,16 @@
+.container {
+    width: 100%;
+    position: relative;
+
+    & + & {
+        margin-top: 0.5rem;
+    }
+}
+pre.wrapper {
+    margin-bottom: 0;
+}
+.copyButton {
+    position: absolute;
+    right: 0.6rem;
+    top: 0.6rem;
+}

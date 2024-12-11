@@ -1,0 +1,3 @@
+import DevelopmentCoreCharacteristicsContents from './DevelopmentCoreCharacteristicsContents.mdx';
+
+export default DevelopmentCoreCharacteristicsContents;

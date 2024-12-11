@@ -1,0 +1,85 @@
+import PackageSelector from '@vapor-docs/src/components/guides/PackageSelector';
+import VaporFoundationTable from '@vapor-docs/src/components/guides/VaporFoundationTable';
+
+export const metadata = {
+    title: 'Installation',
+};
+
+# Installation
+
+디자인 시스템 라이브러리를 사용하기 위해서는 몇 가지 기본적인 단계를 따라야 합니다. 아래 지침에 따라 설정을 완료해주세요. (Goorm staff only)
+
+> 외부 관계자분들 중 사용을 원하시는 분들은 [zero.choi@goorm.io](mailto:zero.choi@goorm.io) 또는 [wynter.kim@goorm.io](mailto:wynter.kim@goorm.io)로 문의해주세요.
+
+## Settings
+
+### Node.js
+
+라이브러리를 사용하기 위해 v16 이상의 Node.js 버전이 필요합니다.
+
+### GitHub Package 설정
+
+#### 1. GitHub Personal Access Token 생성
+
+`@goorm-dev` 패키지를 설치하려면 `@goorm-dev` 소속의 GitHub Personal Access Token이 필요합니다.
+
+생성 방법:
+
+1. [GitHub Personal Access Tokens 페이지](https://github.com/settings/tokens)로 이동합니다.
+2. **Generate new token** 버튼을 클릭합니다.
+3. 토큰 설명과 만료 날짜를 설정합니다.
+4. `read:packages` 권한을 포함한 필요한 권한을 선택합니다.
+5. **Generate token** 버튼을 클릭하여 토큰을 생성합니다.
+6. 생성된 토큰을 복사합니다. 이 토큰은 한 번만 표시되므로 안전하게 저장하세요.
+
+#### 2. `.npmrc` 파일 생성 및 설정
+
+프로젝트 루트 디렉토리 또는 사용자 홈 디렉토리에 `.npmrc` 파일을 생성하거나 수정합니다. 다음 내용을 추가하세요:
+
+```shell
+@goorm-dev:registry=https://npm.pkg.github.com/
+//npm.pkg.github.com/:_authToken=ghp_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+```
+
+<br />
+
+## Library Installation
+
+#### Dependencies
+
+애플리케이션에서 사용할 패키지를 선택합니다:
+
+<PackageSelector />
+
+#### Peer dependencies
+
+Vapor Components를 설치하기 전에 다음의 Peer Dependencies를 설치해야 합니다.
+
+```json
+"peerDependencies": {
+  "react": ">=16.13.1",
+  "react-dom": ">=16.13.1",
+  "reactstrap": "^8.10.1"
+},
+```
+
+## External CSS
+
+Vapor Core와 Vapor Components는 Vapor Foundation의 스타일을 사용하므로, 해당 CSS 파일을 프로젝트에 추가해야 합니다.
+CDN 링크에는 버전이 포함되어 있습니다. 버전을 확인하고 사용하시기 바랍니다.
+
+#### Vapor Foundation CDN links
+
+<VaporFoundationTable />
+
+> `goorm` 컨텍스트와 Light 테마는 CDN URL 내에서 생략합니다.
+
+```html
+<link
+    id="vapor-foundation"
+    rel="stylesheet"
+    href="https://statics.goorm.io/gds/foundation/v{버전}/vapor-foundation-{컨텍스트}.{테마}.min.css"
+/>
+```
+
+<br />

@@ -1,0 +1,34 @@
+import { Badge } from '@goorm-dev/vapor-core';
+import Accessibility from '@vapor-docs/src/components/common/Accessibility';
+import Iframe from '@vapor-docs/src/components/common/Iframe';
+import PropTable from '@vapor-docs/src/components/common/PropTable';
+
+import { ACCESSIBILITY_TABLE_DATA, PROPS_TABLE } from './Badge.data';
+
+<MdxLayout>
+    <MdxContent title="Import" componentName="Badge">
+         ##### Import
+        <CodeBlock>
+            ```js
+            import { Badge } from '@goorm-dev/vapor-core';
+            ```
+        </CodeBlock>
+    </MdxContent>
+    <MdxContent title="Examples" componentName="Badge">
+        ##### Examples
+        <Iframe
+            title='Badge Example'
+            src='/iframe/vapor-core/badge'
+        />   
+    </MdxContent>
+    <MdxContent title="Props" componentName="Badge">
+        ##### Props
+
+        <PropTable props={PROPS_TABLE} target={ Badge } />
+    </MdxContent>
+    <MdxContent>
+        ##### Accessibility
+        <Accessibility tableData = {ACCESSIBILITY_TABLE_DATA} />
+    </MdxContent>
+
+</MdxLayout>

@@ -1,0 +1,48 @@
+import { Dropdown } from '@goorm-dev/vapor-core';
+import Accessibility from '@vapor-docs/src/components/common/Accessibility';
+import Iframe from '@vapor-docs/src/components/common/Iframe';
+import PropTable from '@vapor-docs/src/components/common/PropTable';
+
+import {
+    ACCESSIBILITY_TABLE_DATA,
+    DROPDOWN_CONTENTS_PROPS_TABLE,
+    DROPDOWN_GROUP_PROPS_TABLE,
+    DROPDOWN_ITEM_PROPS_TABLE,
+    DROPDOWN_PROPS_TABLE,
+} from './Dropdown.data';
+
+<MdxLayout>
+    <MdxContent title="Import" componentName="Dropdown">
+         ##### Import
+        <CodeBlock>
+            ```js
+            import { Dropdown } from '@goorm-dev/vapor-core';
+            ```
+        </CodeBlock>
+    </MdxContent>
+    <MdxContent title="Examples" componentName="Dropdown">
+        ##### Examples
+        <Iframe
+            title='Dropdown Example'
+            src='/iframe/vapor-core/dropdown'
+        />   
+    </MdxContent>
+    <MdxContent title="Dropdown Props" componentName="Dropdown">
+        ##### Dropdown Props
+        <PropTable props={DROPDOWN_PROPS_TABLE} target={ Dropdown } />
+
+        ##### Dropdown.Contents Props
+        <PropTable props={DROPDOWN_CONTENTS_PROPS_TABLE} target={ Dropdown.Contents } />
+
+        ##### Dropdown.Group Props
+        <PropTable props={DROPDOWN_GROUP_PROPS_TABLE} target={ Dropdown.Group } />
+
+        ##### Dropdown.Item Props
+        <PropTable props={DROPDOWN_ITEM_PROPS_TABLE} target={ Dropdown.Item } />
+    </MdxContent>
+    <MdxContent>
+        ##### Accessibility
+        <Accessibility tableData = {ACCESSIBILITY_TABLE_DATA} />
+    </MdxContent>
+
+</MdxLayout>

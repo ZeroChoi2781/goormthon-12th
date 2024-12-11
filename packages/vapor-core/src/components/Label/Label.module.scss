@@ -1,0 +1,13 @@
+.visuallyHidden {
+    position: absolute;
+    border: 0;
+    // Safari 환경에서는 스크린 리더기가 zero-size 요소를 읽을 수 없기 때문에 1px로 지정
+    width: 0.0625rem;
+    height: 0.0625rem;
+    padding: 0;
+    margin: -0.0625rem;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    word-wrap: normal;
+}

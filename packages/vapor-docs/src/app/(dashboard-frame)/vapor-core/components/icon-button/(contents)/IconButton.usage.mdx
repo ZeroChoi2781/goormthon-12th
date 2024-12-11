@@ -1,0 +1,34 @@
+import { IconButton } from '@goorm-dev/vapor-core';
+import Accessibility from '@vapor-docs/src/components/common/Accessibility';
+import Iframe from '@vapor-docs/src/components/common/Iframe';
+import PropTable from '@vapor-docs/src/components/common/PropTable';
+
+import { ACCESSIBILITY_TABLE_DATA, PROPS_TABLE } from './IconButton.data';
+
+<MdxLayout>
+    <MdxContent title="Import" componentName="IconButton">
+         ##### Import
+        <CodeBlock>
+            ```js
+            import { IconButton } from '@goorm-dev/vapor-core';
+            ```
+        </CodeBlock>
+    </MdxContent>
+    <MdxContent title="Examples" componentName="IconButton">
+        ##### Examples
+        <Iframe
+            title='IconButton Example'
+            src='/iframe/vapor-core/icon-button'
+        />   
+    </MdxContent>
+    <MdxContent title="Props" componentName="IconButton">
+        ##### Props
+
+        <PropTable props={PROPS_TABLE} target={ IconButton } />
+    </MdxContent>
+    <MdxContent>
+        ##### Accessibility
+        <Accessibility tableData = {ACCESSIBILITY_TABLE_DATA} />
+    </MdxContent>
+
+</MdxLayout>

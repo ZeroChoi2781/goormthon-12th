@@ -1,0 +1,35 @@
+import { Alert } from '@goorm-dev/vapor-core';
+import Accessibility from '@vapor-docs/src/components/common/Accessibility';
+
+import Iframe from '@vapor-docs/src/components/common/Iframe';
+import PropTable from '@vapor-docs/src/components/common/PropTable';
+
+import { ACCESSIBILITY_TABLE_DATA, PROPS_TABLE } from './Alert.data';
+
+<MdxLayout>
+    <MdxContent title="Import" componentName="Alert">
+         ##### Import
+        <CodeBlock>
+            ```js
+            import { Alert } from '@goorm-dev/vapor-core';
+            ```
+        </CodeBlock>
+    </MdxContent>
+    <MdxContent title="Examples" componentName="Alert">
+        ##### Examples
+        <Iframe
+            title='Alert Example'
+            src='/iframe/vapor-core/alert'
+        />   
+    </MdxContent>
+    <MdxContent title="Props" componentName="Alert">
+        ##### Props
+
+        <PropTable props={PROPS_TABLE} target={ Alert } />
+    </MdxContent>
+    <MdxContent>
+        ##### Accessibility
+        <Accessibility tableData = {ACCESSIBILITY_TABLE_DATA} />
+    </MdxContent>
+
+</MdxLayout>

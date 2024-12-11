@@ -1,0 +1,34 @@
+import { Text } from '@goorm-dev/vapor-core';
+import Accessibility from '@vapor-docs/src/components/common/Accessibility';
+import Iframe from '@vapor-docs/src/components/common/Iframe';
+import PropTable from '@vapor-docs/src/components/common/PropTable';
+
+import { ACCESSIBILITY_TABLE_DATA, PROPS_TABLE } from './Text.data';
+
+<MdxLayout>
+    <MdxContent title="Import" componentName="Text">
+         ##### Import
+        <CodeBlock>
+            ```js
+            import { Text } from '@goorm-dev/vapor-core';
+            ```
+        </CodeBlock>
+    </MdxContent>
+    <MdxContent title="Examples" componentName="Text">
+        ##### Examples
+        <Iframe
+            title='Text Example'
+            src='/iframe/vapor-core/text'
+        />   
+    </MdxContent>
+    <MdxContent title="Props" componentName="Text">
+        ##### Props
+
+        <PropTable props={PROPS_TABLE} target={ Text } />
+    </MdxContent>
+    <MdxContent>
+        ##### Accessibility
+        <Accessibility tableData = {ACCESSIBILITY_TABLE_DATA} />
+    </MdxContent>
+
+</MdxLayout>

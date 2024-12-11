@@ -1,0 +1,7 @@
+.container {
+    padding: var(--space-300, 1.5rem);
+
+    &_expanded {
+        padding: 0;
+    }
+}

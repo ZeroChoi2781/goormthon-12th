@@ -1,0 +1,69 @@
+.table {
+    outline: 1px solid var(--border-color);
+    border-radius: var(--border-radius-300);
+    overflow: hidden;
+    table-layout: fixed;
+
+    tbody tr:last-child {
+        th,
+        td {
+            border-bottom: none;
+        }
+    }
+
+    tbody td,
+    tbody th {
+        vertical-align: top;
+        height: fit-content;
+        padding: var(--space-200) var(--space-300);
+    }
+}
+
+.tableHeader {
+    &_short {
+        width: 15%;
+    }
+
+    &_description {
+        width: 50%;
+        white-space: pre-wrap;
+    }
+}
+
+.tableBody {
+    &_description {
+        white-space: pre-wrap;
+    }
+}
+
+.tRow {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-100);
+    align-items: flex-start;
+}
+
+.valueList {
+    display: flex;
+    gap: var(--space-075);
+    flex-wrap: wrap;
+
+    span:not(:first-child):before {
+        content: '|';
+        margin-right: var(--space-075);
+        color: var(--border-color);
+    }
+}
+.examplePre {
+    background: unset !important;
+}
+
+.cursor {
+    cursor: pointer;
+}
+
+.PropTable {
+    &__badge {
+        margin-left: 0.5rem;
+    }
+}
