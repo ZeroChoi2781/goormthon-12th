@@ -1,0 +1,14 @@
+{
+    "extends": "../../tsconfig.json",
+    "compilerOptions": {
+        /**
+         * declaration, declarationMap
+         * - 원래는 Go to Definition 같은 네비게이션 사용시, d.ts 파일로 감
+         * - 해당 옵션을 통해 d.ts 파일이 아닌 원본파일로 가게하는 기능
+         */
+        "declaration": true,
+        "declarationMap": false,
+        "outDir": "./dist/types"
+    },
+    "include": ["./"]
+}

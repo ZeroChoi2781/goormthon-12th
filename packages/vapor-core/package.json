@@ -1,0 +1,75 @@
+{
+    "name": "@goorm-dev/vapor-core",
+    "version": "0.22.0",
+    "description": "Vapor Core",
+    "keywords": [
+        "goorm",
+        "react",
+        "core"
+    ],
+    "author": "goorm",
+    "license": "ISC",
+    "main": "dist/cjs/index.js",
+    "module": "dist/esm/index.js",
+    "types": "dist/types/index.d.ts",
+    "files": [
+        "dist"
+    ],
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/goorm-dev/gds.git",
+        "directory": "packages/vapor-core"
+    },
+    "publishConfig": {
+        "registry": "https://npm.pkg.github.com/"
+    },
+    "scripts": {
+        "build": "npm run build:typings && rollup -c ../../rollup.config.js",
+        "build:typings": "rm -rf dist/ && tsc --emitDeclarationOnly",
+        "test": "playwright test"
+    },
+    "bugs": {
+        "url": "https://github.com/goorm-dev/gds/issues"
+    },
+    "engines": {
+        "node": ">=16"
+    },
+    "dependencies": {
+        "@goorm-dev/vapor-hooks": "^0.11.0",
+        "@goorm-dev/vapor-icons": "^0.22.0",
+        "@radix-ui/react-checkbox": "^1.1.1",
+        "@radix-ui/react-dialog": "^1.1.1",
+        "@radix-ui/react-dropdown-menu": "^2.1.1",
+        "@radix-ui/react-id": "^1.1.0",
+        "@radix-ui/react-label": "^2.1.0",
+        "@radix-ui/react-navigation-menu": "^1.2.1",
+        "@radix-ui/react-primitive": "^2.0.0",
+        "@radix-ui/react-radio-group": "^1.2.1",
+        "@radix-ui/react-slot": "^1.1.0",
+        "@radix-ui/react-switch": "^1.1.1",
+        "@radix-ui/react-tabs": "^1.1.1",
+        "@radix-ui/react-use-controllable-state": "^1.1.0",
+        "classnames": "^2.2.6",
+        "nano-css": "^5.6.2"
+    },
+    "devDependencies": {
+        "@axe-core/playwright": "^4.10.0",
+        "@playwright/test": "^1.48.2",
+        "@types/classnames": "^2.3.1",
+        "@types/react": "^18.0.26",
+        "browserslist": "^4.23.0",
+        "react": ">=16.13.1",
+        "react-dom": ">=16.13.1"
+    },
+    "peerDependencies": {
+        "react": ">=16.13.1",
+        "react-dom": ">=16.13.1"
+    },
+    "browserslist": [
+        ">1%",
+        "last 4 versions",
+        "Firefox ESR",
+        "not ie < 9"
+    ],
+    "gitHead": "bc96a8853a921eefe96458d293af84ac969f11ea"
+}

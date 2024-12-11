@@ -1,0 +1,80 @@
+name: "[수동배포] Vapor 패키지 Canary 버전"
+
+on: 
+  workflow_dispatch:
+    inputs:     
+      package-name:
+        description: 패키지명
+        required: true
+        default: 'vapor-components'
+        type: choice
+        options:
+          - 'vapor-core'
+          - 'vapor-components'
+          - 'vapor-icons'
+          - 'vapor-charts'
+          - 'vapor-hooks'
+          - 'vapor-tables'
+
+jobs:
+  job_build:
+    name: Deploy Packages Dev
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout
+        uses: actions/checkout@v4
+        with:
+          submodules: true
+          fetch-depth: 0
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18.20.0
+          registry-url: 'https://npm.pkg.github.com'
+
+      - name: Set npm config
+        run: npm config set @goorm-dev:registry=https://npm.pkg.github.com/ && npm config set //npm.pkg.github.com/:_authToken ${{ secrets.PACKAGE_TOKEN }}
+
+      - name: Check Branch Name
+        id: check-branch-name
+        run: |
+          if [[ ${{ github.ref_name }} =~ ^feature\/[0-9]+sp$ ]]; then
+            echo "is-canary=true" >> $GITHUB_OUTPUT
+          else
+            echo "is-canary=false" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Merge develop branch
+        if: steps.check-branch-name.outputs.is-canary == 'true'
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git merge origin/develop
+
+      - name: Install Yarn
+        run: |
+          curl -L https://yarnpkg.com/install.sh | bash
+          export PATH="$HOME/.local/bin:$PATH"
+
+      - name: Install Dependencies
+        run: yarn install:all
+
+      - name: Build Packages
+        run: yarn build:${{ github.event.inputs.package-name }}
+
+      - name: Publish Experimental Version
+        run: |
+          if [[ ${{ steps.check-branch-name.outputs.is-canary == 'true' }} ]]; 
+          then
+            BRANCH_NAME=canary yarn publish:experimental --bump minor --force-publish=@goorm-dev/${{github.event.inputs.package-name}}
+          else
+            BRANCH_NAME=${{ github.ref_name }} yarn publish:experimental
+          fi
+
+  update_docs:
+    uses: './.github/workflows/auto-sync-vercel.yml'
+    needs: job_build
+    if: success()
+    secrets: 
+      FORK_GITHUB_TOKEN: ${{ secrets.FORK_GITHUB_TOKEN }}

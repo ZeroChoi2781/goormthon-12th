@@ -1,0 +1,48 @@
+name: '[WORKFLOW_APP] 테스트 수행'
+
+on:
+  workflow_dispatch:
+    inputs:
+        test_url:
+            description: 'vapor-docs 주소'
+            required: true
+            default: 'https://vapor.goorm.io'
+
+jobs:
+  e2e-tests:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18.20.0
+          registry-url: 'https://npm.pkg.github.com'
+
+      - name: Get yarn cache directory path
+        id: yarn-cache-dir-path
+        run: echo "dir=$(yarn config get cacheFolder)" >> $GITHUB_ENV
+
+      - name: Set npm config
+        run: npm config set @goorm-dev:registry=https://npm.pkg.github.com/ && npm config set //npm.pkg.github.com/:_authToken ${{ secrets.PACKAGE_TOKEN }}
+
+      - name: Install Yarn
+        run: |
+          curl -L https://yarnpkg.com/install.sh | bash
+          export PATH="$HOME/.local/bin:$PATH"
+
+      - name: Install dependencies
+        run: yarn && yarn playwright install
+
+      - name: Run Playwright E2E tests
+        continue-on-error: true  # 테스트 실패에도 다음 단계를 계속 실행
+        run: TEST_URL=${{github.event.inputs.test_url}} yarn test:vapor-core
+      # TODO: PR에 결과를 코멘트로 남기기
+      # - name: 'Playwright Reporter'
+      #   uses: daun/playwright-report-summary@v3
+      #   with:
+      #     report-file: ./packages/vapor-core/playwright-report/results.json
+      #     comment-title: 'Playwright Test Results'
+      #     job-summary: true

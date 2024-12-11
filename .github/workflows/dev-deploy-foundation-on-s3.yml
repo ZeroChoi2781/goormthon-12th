@@ -1,0 +1,87 @@
+name: "[수동배포] Vapor Foundation dev 버전"
+
+on: 
+  workflow_dispatch:
+
+jobs:
+  job_build:
+    name: Deploy Foundation Dev
+    runs-on: ubuntu-22.04
+
+    steps:
+      - name: Checkout Current Commit
+        uses: actions/checkout@v4
+        with:
+          submodules: true
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18
+          registry-url: 'https://npm.pkg.github.com'
+
+      - name: Get current package version
+        id: package-version
+        uses: martinbeentjes/npm-get-version-action@v1.2.3
+        with:
+          path: packages/vapor-foundation
+      
+      - name: Check current package version
+        run: echo "Current version is ${{ steps.package-version.outputs.current-version }}"
+
+      - name: Set npm config
+        run: npm config set @goorm-dev:registry=https://npm.pkg.github.com/ && npm config set //npm.pkg.github.com/:_authToken ${{ secrets.PACKAGE_TOKEN }}
+
+      - name: Install Yarn
+        run: |
+          curl -L https://yarnpkg.com/install.sh | bash
+          export PATH="$HOME/.local/bin:$PATH"
+
+      - name: Install Dependencies
+        run: yarn run install:all
+
+      - name: Build Foundation
+        run: yarn run build:vapor-foundation
+
+      - name: Set AWS env
+        id: aws-var
+        run: |
+          echo "::set-output name=DIR_PATH::gds/foundation/${VERSION_TYPE}"
+
+          echo "::set-output name=OUTPUT_LIGHT_PATH::./packages/vapor-foundation/dist/vapor-foundation.min.css"
+          echo "::set-output name=OUTPUT_DARK_PATH::./packages/vapor-foundation/dist/vapor-foundation.dark.min.css"
+          echo "::set-output name=OUTPUT_KID_PATH::./packages/vapor-foundation/dist/vapor-foundation-kid.min.css"
+
+          echo "::set-output name=GOORMSTRAP_LIGHT_NAME::vapor-foundation.min.css"
+          echo "::set-output name=GOORMSTRAP_DARK_NAME::vapor-foundation.dark.min.css"
+          echo "::set-output name=GOORMSTRAP_KID_NAME::vapor-foundation-kid.min.css"
+          
+        env:
+          # NOTE: feature 브랜치에서 퍼블리시하는 패키지는 'experimental' 태그로 배포한다.
+          VERSION_TYPE: 'experimental'
+
+      - name: Set Deploy URL
+        id: url
+        run: |
+          BASE_URL=${{ secrets.AWS_STATICS_S3_BUCKET_NAME }}/${{ steps.aws-var.outputs.DIR_PATH }}/${{ github.event.inputs.branch-name || github.ref_name }}
+
+          echo "::set-output name=LIGHT_PATH::${BASE_URL}/${{ steps.aws-var.outputs.GOORMSTRAP_LIGHT_NAME }}"
+          echo "::set-output name=DARK_PATH::${BASE_URL}/${{ steps.aws-var.outputs.GOORMSTRAP_DARK_NAME }}"
+          echo "::set-output name=KID_PATH::${BASE_URL}/${{ steps.aws-var.outputs.GOORMSTRAP_KID_NAME }}"
+
+      - name: Deploy Foundation on S3
+        run: |
+          aws s3 cp ${{ steps.aws-var.outputs.OUTPUT_LIGHT_PATH }} s3://${{ steps.url.outputs.LIGHT_PATH }}
+          aws s3 cp ${{ steps.aws-var.outputs.OUTPUT_DARK_PATH }}  s3://${{ steps.url.outputs.DARK_PATH }}
+          aws s3 cp ${{ steps.aws-var.outputs.OUTPUT_KID_PATH }}  s3://${{ steps.url.outputs.KID_PATH }}
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_STATICS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_STATICS_SECRET_ACCESS_KEY }}
+          AWS_S3_BUCKET: ${{ secrets.AWS_STATICS_S3_BUCKET_NAME }}
+          AWS_REGION: ${{ secrets.AWS_STATICS_REGION }}
+
+      - name: Echo Deployed Foundation
+        run: |
+          echo "Deployed Foundation Light: ${{ steps.url.outputs.LIGHT_PATH }}"
+          echo "Deployed Foundation Dark: ${{ steps.url.outputs.DARK_PATH }}"  
+          echo "Deployed Foundation Kid: ${{ steps.url.outputs.KID_PATH }}"  

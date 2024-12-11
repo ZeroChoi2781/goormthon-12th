@@ -1,0 +1,87 @@
+{
+    "compilerOptions": {
+        "module": "esnext",
+        "target": "es5",
+        "lib": ["es2020", "dom"],
+        "jsx": "react-jsx",
+        "sourceMap": true,
+        "esModuleInterop": true,
+        "allowJs": true,
+        "checkJs": false,
+        "moduleResolution": "node",
+        "noImplicitAny": false,
+        "strictNullChecks": true,
+        "strict": false,
+        "allowSyntheticDefaultImports": true,
+        "skipLibCheck": true,
+        "declaration": true,
+        "forceConsistentCasingInFileNames": false,
+        "baseUrl": ".",
+        "paths": {
+            // global src
+            "_src/*": ["src/*"],
+            "_constants/*": ["constants/*"],
+            "_utils/*": ["utils/*"],
+
+            // packages src
+            "_gds-docs/*": ["packages/gds-docs/*"],
+            "_gds-hooks/*": ["packages/gds-hooks/*"],
+            "_gds-components/*": ["packages/gds-components/src/*"],
+            "_gds-icons/*": ["packages/gds-icons/src/*"],
+            "_gds-tables/*": ["packages/gds-tables/src/*"],
+            "_gds-charts/*": ["packages/gds-charts/src/*"],
+            "_gds-goormstrap/*": ["packages/gds-goormstrap/src/*"],
+
+            // package src v2
+            "@vapor-docs/*": ["packages/vapor-docs/*"],
+            "@vapor-docs": ["packages/vapor-docs"],
+            "@vapor-hooks/*": ["packages/vapor-hooks/*"],
+            "@vapor-hooks": ["packages/vapor-hooks"],
+            "@vapor-core": ["packages/vapor-core"],
+            "@vapor-core/*": ["packages/vapor-core/*"],
+            "@vapor-components/*": ["packages/vapor-components/*"],
+            "@vapor-components": ["packages/vapor-components"],
+            "@vapor-icons/*": ["packages/vapor-icons/*"],
+            "@vapor-icons": ["packages/vapor-icons"],
+            "@vapor-tables/*": ["packages/vapor-tables/*"],
+            "@vapor-tables": ["packages/vapor-tables"],
+            "@vapor-charts/*": ["packages/vapor-charts/*"],
+            "@vapor-charts": ["packages/vapor-charts"],
+            "@vapor-tools/*": ["packages/vapor-tools/*"],
+            "@vapor-tools": ["packages/vapor-tools"],
+            "@vapor-foundation/*": ["packages/vapor-foundation/*"],
+            "@vapor-foundation": ["packages/vapor-foundation"],
+            "@vapor-date/*": ["packages/vapor-date/*"],
+            "@vapor-date": ["packages/vapor-date"],
+            "@vapor-codemirror/*": ["packages/vapor-codemirror/*"],
+            "@vapor-codemirror": ["packages/vapor-codemirror"],
+
+            // etc
+            "_libs/reactstrap/*": ["libs/reactstrap/*"],
+            "@vercel/analytics/next/*": [
+                "node_modules/@vercel/analytics/dist/next/*"
+            ]
+        }
+    },
+    "include": [
+        "packages/**/*",
+        "stories/**/*",
+        "utils/**/*",
+        "src/**/*",
+        "plopfile.js",
+        "constants/prop.js"
+    ],
+    "exclude": [
+        "*.config.js",
+        "**/dist/**/*",
+        "*.json",
+        "**/node_modules/**/*",
+
+        // 아래 폴더는 하위 파일을 모두 ts 양식에 맞게 migration한 뒤 풀어줘야함
+        "libs/**/*",
+
+        // 아래 파일은 ts 양식에 맞게 수정 후 풀어줘야함
+        "stories/components/Button.tsx",
+        "stories/components/ButtonToggleGroup.jsx"
+    ]
+}

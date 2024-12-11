@@ -1,0 +1,111 @@
+# Goormstrap Release 워크플로우입니다.
+# diff를 확인해 diff가 있는 경우에만 배포가 이루어집니다.
+
+name: "REALSE: (구)GDS Goormstrap 배포"
+
+on:
+  workflow_dispatch:
+
+jobs:
+  job_build:
+    name: Deploy Goormstrap
+    runs-on: ubuntu-22.04
+
+    steps:
+      - name: Checkout Current Commit
+        uses: actions/checkout@v4
+        with:
+          submodules: true
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18
+          registry-url: 'https://npm.pkg.github.com'
+
+      - name: Get current package version
+        id: package-version
+        uses: martinbeentjes/npm-get-version-action@v1.2.3
+        with:
+          path: packages/gds-goormstrap
+      
+      - name: Check current package version
+        run: echo "Current version is ${{ steps.package-version.outputs.current-version }}"
+
+      - name: Set npm config
+        run: npm config set @goorm-dev:registry=https://npm.pkg.github.com/ && npm config set //npm.pkg.github.com/:_authToken ${{ secrets.PACKAGE_TOKEN }}
+
+      - name: Install Yarn
+        run: |
+          curl -L https://yarnpkg.com/install.sh | bash
+          export PATH="$HOME/.local/bin:$PATH"
+        
+      - name: Install Dependencies
+        run: yarn run install:all
+
+      - name: Build Goormstrap
+        run: yarn run build:gds-goormstrap
+
+      - name: Set AWS env
+        id: aws-var
+        run: |
+          echo "::set-output name=LATEST_VERSION::latest"
+
+          echo "::set-output name=DIR_PATH::gds/gds-foundation"
+
+          echo "::set-output name=OUTPUT_LIGHT_PATH::./packages/gds-goormstrap/dist/goormstrap-light.min.css"
+          echo "::set-output name=OUTPUT_DARK_PATH::./packages/gds-goormstrap/dist/goormstrap-dark.min.css"
+
+          echo "::set-output name=GOORMSTRAP_LIGHT_NAME::vapor-foundation.min.css"
+          echo "::set-output name=GOORMSTRAP_DARK_NAME::vapor-foundation.dark.min.css"
+
+      - name: Set Deploy URL
+        id: url
+        run: |
+          PACKAGE_VERSION=v${{ steps.package-version.outputs.current-version }} 
+          LATEST_VERSION=${{ steps.aws-var.outputs.LATEST_VERSION }} 
+          BASE_URL=${{ secrets.AWS_STATICS_S3_BUCKET_NAME }}/${{ steps.aws-var.outputs.DIR_PATH }}
+
+          echo "::set-output name=LIGHT_PATH::${BASE_URL}/${PACKAGE_VERSION}/${{ steps.aws-var.outputs.GOORMSTRAP_LIGHT_NAME }}"
+          echo "::set-output name=LIGHT_LATEST_PATH::${BASE_URL}/${LATEST_VERSION}/${{ steps.aws-var.outputs.GOORMSTRAP_LIGHT_NAME }}"
+
+          echo "::set-output name=DARK_PATH::${BASE_URL}/${PACKAGE_VERSION}/${{ steps.aws-var.outputs.GOORMSTRAP_DARK_NAME }}"
+          echo "::set-output name=DARK_LATEST_PATH::${BASE_URL}/${LATEST_VERSION}/${{ steps.aws-var.outputs.GOORMSTRAP_DARK_NAME }}"
+
+      - name: Deploy Goormstrap on S3
+        run: |
+          aws s3 cp ${{ steps.aws-var.outputs.OUTPUT_LIGHT_PATH }} s3://${{ steps.url.outputs.LIGHT_PATH }}
+          aws s3 cp ${{ steps.aws-var.outputs.OUTPUT_LIGHT_PATH }} s3://${{ steps.url.outputs.LIGHT_LATEST_PATH }}
+
+          aws s3 cp ${{ steps.aws-var.outputs.OUTPUT_DARK_PATH }}  s3://${{ steps.url.outputs.DARK_PATH }}
+          aws s3 cp ${{ steps.aws-var.outputs.OUTPUT_DARK_PATH }}  s3://${{ steps.url.outputs.DARK_LATEST_PATH }}
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_STATICS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_STATICS_SECRET_ACCESS_KEY }}
+          AWS_S3_BUCKET: ${{ secrets.AWS_STATICS_S3_BUCKET_NAME }}
+          AWS_REGION: ${{ secrets.AWS_STATICS_REGION }}
+
+      - name: Send slack success message
+        run: |
+          curl -X POST \
+          -H 'Content-type: application/json' \
+          --data '{
+            "username": "GDS-bot",
+            "attachments": [{
+              "pretext": "*@gds-alarm* Goormstrap CSS ${{ steps.package-version.outputs.current-version }}가 릴리즈 됐습니다. Vapor 패키지로의 마이그레이션을 아직 완료하지 않으셨다면, 해당 CSS 파일을 사용해주세요.",
+              "color": "#5094FA",
+              "fields": [{
+                "title": "Goorm Light Foundation",
+                "value": "${{ steps.url.outputs.LIGHT_PATH }}",
+                "short": false
+              }, {
+                "title": "Goorm Dark Foundation",
+                "value": "${{ steps.url.outputs.DARK_PATH }}",
+                "short": false
+              }, {
+                "title": "Kid Light Foundation",
+                "value": "스레드 참고",
+                "short": false
+              }]
+            }]
+          }' "${{ secrets.SLACK_WEB_HOOK }}"

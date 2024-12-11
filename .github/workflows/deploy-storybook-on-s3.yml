@@ -1,0 +1,55 @@
+name: '[수동배포] Storybook'
+
+on: [workflow_dispatch]
+
+jobs:
+  deploy-storybook-on-s3:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: checkout
+        uses: actions/checkout@v4
+        with:
+          submodules: true
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18.20.0
+          registry-url: 'https://npm.pkg.github.com'
+
+      - name: Get yarn cache directory path
+        id: yarn-cache-dir-path
+        run: echo "dir=$(yarn config get cacheFolder)" >> $GITHUB_ENV
+
+      - name: Set npm config
+        run: npm config set @goorm-dev:registry=https://npm.pkg.github.com/ && npm config set //npm.pkg.github.com/:_authToken ${{ secrets.PACKAGE_TOKEN }}
+
+      - name: Install Yarn
+        run: |
+          curl -L https://yarnpkg.com/install.sh | bash
+          export PATH="$HOME/.local/bin:$PATH"
+
+      - name: Install Dependencies
+        run: yarn install:all
+
+      - name: Build Packages
+        run: yarn build:all
+
+      - name: Build Storybook
+        run: yarn build:storybook
+
+      - name: Set env for storybook output path
+        run: echo "OUTPUT_PATH=storybook-static" >> $GITHUB_ENV
+
+      - name: Set URL for S3 bucket
+        run: echo "BASE_URL=${{ secrets.AWS_S3_BUCKET_NAME }}" >> $GITHUB_ENV
+
+      - name: Deploy S3
+        run: |
+          aws s3 cp ${{ env.OUTPUT_PATH }} s3://${{ env.BASE_URL }} --recursive
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          AWS_S3_BUCKET: ${{ secrets.AWS_S3_BUCKET_NAME }}
+          AWS_REGION: ${{ secrets.AWS_REGION }}

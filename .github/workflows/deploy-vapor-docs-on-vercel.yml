@@ -1,0 +1,20 @@
+name: '[수동배포] Vercel (master, develop 브랜치만 가능)'
+
+on: [workflow_dispatch]
+
+jobs:
+  deploy-vercel:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out the repository
+        uses: actions/checkout@v3
+
+      - name: Deploy to Vercel
+        run: |
+          if [ "${{ github.ref }}" == "refs/heads/develop" ]; then
+            curl -X POST https://api.vercel.com/v1/integrations/deploy/prj_BF2aLaG5Maiqa2rqeV2eqHtY0UKU/t5Ecrx0fj6
+          elif [ "${{ github.ref }}" == "refs/heads/master" ]; then
+            curl -X POST https://api.vercel.com/v1/integrations/deploy/prj_BF2aLaG5Maiqa2rqeV2eqHtY0UKU/CNL6Od40yo
+          else
+            echo "No matching branch found for deployment"
+          fi

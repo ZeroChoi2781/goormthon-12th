@@ -1,0 +1,164 @@
+name: '[CD] Release 시작 & 슬랙 알림'
+
+on:
+  workflow_dispatch:
+  workflow_run:
+    workflows: 정기 릴리즈 feat 커밋 추가
+    types:
+      - completed
+
+jobs:
+  release-start:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          submodules: true
+          fetch-depth: 0
+
+      # 브랜치 최신화
+      - name: Update remote branches
+        run: git remote update
+
+      - name: Update develop and master branch
+        run: git checkout develop && git pull origin develop && git checkout master && git pull origin master
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "18.20.0"
+
+      - name: Set npm config
+        run: |
+          npm config set @goorm-dev:registry=https://npm.pkg.github.com/
+          npm config set //npm.pkg.github.com/:_authToken ${{ secrets.PACKAGE_TOKEN }}
+
+      - name: Set Git config
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+
+      - name: Install Yarn
+        run: |
+          curl -L https://yarnpkg.com/install.sh | bash
+          export PATH="$HOME/.local/bin:$PATH"
+      
+      - name: Install Dependencies
+        run: yarn install:all
+
+      - name: Install git flow
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y git-flow
+          git flow init -d
+
+      # 릴리즈 브랜치 이름 생성 (예: 20241112-0)
+      - name: Get Release branch's name
+        run: |
+          TODAY_DATE=$(node -e 'const today = new Date(); console.log(`${today.getFullYear()}${String(today.getMonth() + 1).padStart(2, "0")}${String(today.getDate()).padStart(2, "0")}`)')
+          echo "RELEASE_BRANCH_NAME=${TODAY_DATE}-0" >> $GITHUB_ENV
+
+      - name: Start Release with git flow and lerna version
+        run: |
+          # 릴리즈 브랜치 생성
+          git flow release start -F ${{ env.RELEASE_BRANCH_NAME }}
+
+          # 릴리즈 브랜치 publish & lerna version
+          yarn version:release
+
+      # 이번 스프린트 작업 내역 파싱(릴리즈 노트를 위한 내용)
+      - name: Read the latest minor CHANGELOG entry
+        run: |
+          # 최근 '##' 헤더부터 이전 '##' 헤더까지 내용을 CHANGELOG.md에서 추출
+          CHANGELOG=$(awk '/^## /{if (found) exit; found=1} found{print}' CHANGELOG.md)
+
+          # 마크다운 타이틀을 Slack에서 굵게로 변환
+          CHANGELOG=$(echo "$CHANGELOG" | sed -E 's/^##+ (.+)/*\1*/')
+
+          # 마크다운 URL을 Slack 포맷 URL로 변환
+          CHANGELOG=$(echo "$CHANGELOG" | sed -E 's/\\?([[][^]]+]\\?)\\?[(]([^()]+)\\?[)]/<\2|\1>/g')
+
+          # 수정된 변경로그를 환경 파일에 작성
+          echo "CHANGELOG_CONTENT<<EOF" >> $GITHUB_ENV
+          echo "$CHANGELOG" >> $GITHUB_ENV
+          echo "EOF" >> $GITHUB_ENV
+
+      - name: Get current package version
+        id: package-version
+        uses: martinbeentjes/npm-get-version-action@v1.2.3
+        with:
+          path: packages/vapor-components
+
+      - name: Send to Slack via Webhook
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+          CHANGELOG_CONTENT: ${{ env.CHANGELOG_CONTENT }}
+        run: |
+          # JSON 구문 오류를 방지하기 위해 변경로그 내용의 이중 따옴표를 이스케이프
+          ESCAPED_CHANGELOG_CONTENT=$(echo "$CHANGELOG_CONTENT" | sed 's/\^H//g' | sed 's/"/\\"/g')
+
+          echo "파싱된 CHANGELOG.md"
+          echo "$ESCAPED_CHANGELOG_CONTENT"
+
+          # 결합된 메시지를 Slack으로 전송
+          curl -X POST --data-urlencode "payload={
+            \"username\": \"release-bot\",
+            \"blocks\": [
+              {
+                \"type\": \"header\",
+                \"text\": {
+                  \"type\": \"plain_text\",
+                  \"text\": \"${{ steps.package-version.outputs.current-version }} 릴리즈 열차가 출발합니다 🚂\",
+                  \"emoji\": true
+                }
+              },
+              {
+                \"type\": \"section\",
+                \"text\": {
+                  \"type\": \"mrkdwn\",
+                  \"text\": \"Vapor ${{ steps.package-version.outputs.current-version }} 버전의 *릴리즈 노트* 를 작성해주세요 \n이번 스프린트에 릴리즈할 *피그마 링크를 댓글에 달아주세요*\"
+                }
+              },
+              {
+                \"type\": \"divider\"
+              },
+              {
+                \"type\": \"section\",
+                \"text\": {
+                  \"type\": \"mrkdwn\",
+                  \"text\": \"<https://github.com/goorm-dev/gds/tree/release/${{env.RELEASE_BRANCH_NAME}}|release/${{env.RELEASE_BRANCH_NAME}}>\"
+                }
+              },
+              {
+                \"type\": \"section\",
+                \"text\": {
+                  \"type\": \"mrkdwn\",
+                  \"text\": \"${ESCAPED_CHANGELOG_CONTENT}\"
+                }
+              },
+              {
+                \"type\": \"section\",
+                \"text\": {
+                  \"type\": \"mrkdwn\",
+                  \"text\": \"> 릴리즈 항목을 모두 확인했다면, 완료 버튼을 눌러주세요\"
+                }
+              },
+              {
+                \"type\": \"actions\",
+                \"elements\": [
+                  {
+                    \"type\": \"button\",
+                    \"text\": {
+                      \"type\": \"plain_text\",
+                      \"text\": \"완료\",
+                      \"emoji\": true
+                    },
+                    \"value\": \"complete_release\",
+                    \"action_id\": \"complete_write_release_note\"
+                  }
+                ]
+              }
+            ]
+          }" "${{ secrets.SLACK_WEBHOOK_URL }}"

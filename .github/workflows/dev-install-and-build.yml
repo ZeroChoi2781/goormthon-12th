@@ -1,0 +1,85 @@
+name: '[CI] Vapor 패키지 전체 설치 및 빌드'
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - develop
+    paths:
+      - 'packages/**'
+      - rollup.config.js
+      - .eslintrc.js
+      - .prettierrc.js
+      - lerna.json
+      - tsconfig.json
+      - package.json
+
+jobs:
+  install-and-build:
+    runs-on: ubuntu-latest
+    if: github.repository == 'goorm-dev/gds'
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          submodules: true
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18.20.0
+          registry-url: 'https://npm.pkg.github.com'
+
+      - name: Get Yarn cache directory path
+        id: yarn-cache-dir-path
+        run: echo "::set-output name=dir::$(yarn config get cacheFolder)"
+
+      - name: Set npm config
+        run: |
+          npm config set @goorm-dev:registry=https://npm.pkg.github.com/
+          npm config set //npm.pkg.github.com/:_authToken ${{ secrets.PACKAGE_TOKEN }}
+
+      - name: Install Yarn
+        run: |
+          curl -L https://yarnpkg.com/install.sh | bash
+          export PATH="$HOME/.local/bin:$PATH"
+
+      - name: Install Dependencies
+        run: yarn install:all
+
+      - name: Build Packages
+        run: yarn build:all
+
+  notify-slack-on-failure:
+    runs-on: ubuntu-latest
+    needs: install-and-build
+    if: failure()
+    steps:
+      - name: Send Slack failure message
+        run: |
+          curl -X POST \
+          -H 'Content-type: application/json' \
+          --data '{
+            "username": "GDS-bot",
+            "attachments": [{
+              "pretext": "*@vapor-alarm* 패키지 설치 또는 빌드가 실패했습니다 :red_circle:",
+              "color": "#ff5c5c",
+              "fields": [{
+                "title": "Repository",
+                "value": "<${{ github.server_url }}/${{ github.repository }}|${{ github.repository }}>",
+                "short": false
+              }, {
+                "title": "Branch",
+                "value": "${{ github.ref_name }}",
+                "short": true
+              }, {
+                "title": "Commit",
+                "value": "<${{ github.server_url }}/${{ github.repository }}/commit/${{ github.sha }}|${{ github.sha }}>",
+                "short": true
+              }, {
+                "title": "Author",
+                "value": "${{ github.actor }}",
+                "short": true
+              }]
+            }]
+          }' "${{ secrets.SLACK_WEB_HOOK_ALARM }}"

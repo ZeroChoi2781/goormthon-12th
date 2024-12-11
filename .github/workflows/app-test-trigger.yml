@@ -1,0 +1,26 @@
+name: '[WORKFLOW_APP] 워크플로 앱에 테스트 큐 등록'
+
+on:
+  issue_comment:
+    types: [created]
+
+jobs:
+  trigger-workflow:
+    if: ${{ contains(fromJson('["ZeroChoi2781", "WynterKim", "MaxLee-dev", "noaaaahh", "ellen-lee-goorm"]'), github.event.comment.user.login) && contains(github.event.comment.body, 'test') }}
+    uses: './.github/workflows/auto-sync-vercel.yml'
+    secrets:
+        FORK_GITHUB_TOKEN: ${{ secrets.FORK_GITHUB_TOKEN }}
+  register-test-branch:
+    if: ${{ contains(fromJson('["ZeroChoi2781", "WynterKim", "MaxLee-dev", "noaaaahh", "ellen-lee-goorm"]'), github.event.comment.user.login) && contains(github.event.comment.body, 'test') }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Extract branch name
+        shell: bash
+        run: echo "branch=${GITHUB_HEAD_REF:-${GITHUB_REF#refs/heads/}}" >> $GITHUB_OUTPUT
+        id: extract_branch
+      - name: Register branch to test queue
+        run: |
+            curl -X POST https://gds-webhook-server-tcdjq.run.goorm.site/github/queue \
+            -H "Content-Type: application/json" \
+            -H "Authorization: Bearer ${{ secrets.SERVER_BEARER_TOKEN }}" \
+            -d "{\"branchName\": \"${{ steps.extract_branch.outputs.branch }}\"}"

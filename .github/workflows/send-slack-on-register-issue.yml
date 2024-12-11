@@ -1,0 +1,34 @@
+name: '[CI] 슬랙 알림'
+
+on:
+  issues:
+    types: [opened, reopened]
+
+jobs:
+  notify:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Send slack success message
+        run: |
+          curl -X POST \
+          -H 'Content-type: application/json' \
+          --data '{
+            "username": "GDS-bot",
+            "attachments": [{
+              "pretext": "*@vapor-alarm* 이슈가 등록되었습니다 :bell:",
+              "color": "#ffd3eb",
+              "fields": [{
+                "title": "이슈",
+                "value": "<${{ github.event.issue.html_url }}|${{ github.event.issue.title }}>",
+                "short": false
+              }, {
+                "title": "작성자",
+                "value": "<${{ github.event.issue.user.login }}>",
+                "short": false
+              }, {
+                "title": "담당자",
+                "value": "<${{ github.event.issue.assignee.login }}>",
+                "short": false
+              }]
+            }]
+          }' "${{ secrets.SLACK_WEB_HOOK }}"

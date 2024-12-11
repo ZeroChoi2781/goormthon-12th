@@ -1,0 +1,29 @@
+# TODO:이거 CD 단계로 빼기
+
+## #!/usr/bin/env sh
+#. "$(dirname -- "$0")/_/husky.sh"
+
+## 구름스트랩 변경사항이 있을 때 스토리북을 위한 스타일 빌드 후 커밋
+#if git diff develop --name-only --cached | grep 'packages/vapor-foundation/styles/light';
+#then
+#    echo "vapor-foundation changed --> building styles for storybook..."
+#    yarn run build:vapor-foundation:dev:light
+#    git add .
+#    if git diff --cached; then
+#       echo "vapor-foundation styles built --> commiting..."
+#       git commit -m "chore(vapor-foundation): 내부 light 스타일 생성"
+#       exit 0
+#     fi
+#   echo "vapor-foundation styles not changed --> skipping commit..."
+# elif git diff develop --name-only --cached | grep 'packages/vapor-foundation/styles/dark';
+#then
+#  echo "vapor-foundation dark changed --> building styles for storybook..."
+#  yarn run build:vapor-foundation:dev:dark
+#  git add .
+#  if git diff --cached; then
+#     echo "vapor-foundation styles built --> commiting..."
+#     git commit -m "chore(vapor-foundation): 내부 dark 스타일 생성"
+#     exit 0
+#   fi
+#   echo "vapor-foundation styles not changed --> skipping commit..."
+# fi

@@ -1,0 +1,52 @@
+name: 정기 릴리즈 feat 커밋 추가
+
+on:
+  workflow_dispatch:
+    inputs:
+        sprint_number:
+            type: number
+            description: 스프린트 번호
+            required: true
+
+jobs:
+  add-feat-commit:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          ref: feature/${{ github.event.inputs.sprint_number }}sp
+
+      # 브랜치 최신화
+      - name: Update remote branches
+        run: git remote update
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "18.20.0"
+
+      # 현재 버전 정보 조회
+      - name: Get current package version
+        id: package-version
+        uses: martinbeentjes/npm-get-version-action@v1.2.3
+        with:
+          path: packages/vapor-components
+
+      # 다음 정기 릴리즈 버전
+      - name: Get Next package version
+        run: |
+          current_version=${{ steps.package-version.outputs.current-version }}
+          version_parts=($(echo $current_version | tr "." "\n"))
+          minor_version=$((version_parts[1] + 1))
+          new_version="${version_parts[0]}.$minor_version.0"
+          echo "new_version=$new_version" >> $GITHUB_ENV
+
+      - name: Add a feat Commit
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+
+          git commit --allow-empty -m "feat: v${{ env.new_version }} 릴리즈"
+          git push origin

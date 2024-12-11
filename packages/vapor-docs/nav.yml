@@ -1,0 +1,56 @@
+- category: Guides
+  items:
+      - title: Installation
+        href: /guides/installation
+      - title: Usage
+        href: /guides/usage
+      - title: Changelog
+        href: /guides/change-log
+      - title: How to migrate
+        href: /guides/how-to-migrate
+- category: Foundation
+  items:
+      - title: Color
+        href: /foundation/color
+      - title: Size
+        href: /foundation/size
+      - title: Typography
+        href: /foundation/typography
+- category: Vapor Core
+  items:
+      - title: Alert
+        href: /vapor-core/components/alert
+      - title: Avatar
+        href: /vapor-core/components/avatar
+      - title: Badge
+        href: /vapor-core/components/badge
+      - title: Breadcrumbs
+        href: /vapor-core/components/breadcrumbs
+      - title: Button
+        href: /vapor-core/components/button
+      - title: Card
+        href: /vapor-core/components/card
+      - title: Checkbox
+        href: /vapor-core/components/checkbox
+      - title: Dialog
+        href: /vapor-core/components/dialog
+      - title: Dropdown
+        href: /vapor-core/components/dropdown
+      - title: IconButton
+        href: /vapor-core/components/icon-button
+      - title: Label
+        href: /vapor-core/components/label
+      - title: RadioGroup
+        href: /vapor-core/components/radio-group
+      - title: Nav
+        href: /vapor-core/components/nav
+      - title: SearchInput
+        href: /vapor-core/components/search-input
+      - title: Switch
+        href: /vapor-core/components/switch
+      - title: Tabs
+        href: /vapor-core/components/tabs
+      - title: Text
+        href: /vapor-core/components/text
+      - title: TextInput
+        href: /vapor-core/components/text-input

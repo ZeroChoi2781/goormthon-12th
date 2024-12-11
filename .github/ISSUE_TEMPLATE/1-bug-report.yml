@@ -1,0 +1,77 @@
+name: Bug report
+description: Vapor 개발 패키지 또는 Vapor Docs의 오류 사항에 대해서 제보합니다.
+title: "[BUG]"
+labels: "\U0001F41E Fix"
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ### Vapor 패키지에 이슈를 제보해주셔서 감사합니다!
+
+        이슈를 제출하기 전에 open/close 이슈를 검색해 주세요. 이미 보고되었거나 해결된 이슈일 수 있습니다.
+        이게 버그인지 아닌지 확실하지 않다면, 대신 Github Discussion을 이용해 주세요. 
+        [Discussion 이동](https://github.com/goorm-dev/gds/discussions)
+
+  - type: textarea
+    id: bug-description
+    attributes:
+      label: 버그 설명
+      description: 버그에 대해 간단하고 명확하게 설명해 주세요. 이 문제를 해결하기 위해 PR을 제출할 계획이 있으시면 그 방법도 함께 알려주세요!
+      placeholder: 버그 설명
+    validations:
+      required: true
+
+  - type: input
+    id: components-affected
+    attributes:
+      label: 영향을 받는 컴포넌트
+      description: 어떤 vapor 컴포넌트가 영향을 받았는지 알려주세요.
+      placeholder: ex. Button, TextButton...
+    validations:
+      required: true
+
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: 재현 방법
+      description: 버그를 재현하는 방법을 단계별로 설명해 주세요.
+      placeholder: |
+        1. '...'로 이동
+        2. '....'을(를) 클릭
+        3. 오류 확인
+    validations:
+      required: true
+
+  - type: textarea
+    id: logs
+    attributes:
+      label: 로그
+      description: "버그 발생 시점의 브라우저 콘솔 및 서버 로그를 포함해 주세요. 재현을 제공해 주셨다면 선택 사항입니다. 로그 텍스트를 이미지 대신 텍스트로 붙여넣어 주세요."
+      render: bash
+
+  - type: textarea
+    id: system-info
+    attributes:
+      label: 시스템 정보
+      description: 사용 중인 라이브러리, Node 그리고 관련 플랫폼 정보를 입력해 주세요.
+      render: bash
+      placeholder: |
+        - Vapor version: [ex. vapor-components@1.0.0]
+        - Node version: [ex. 18.17.0]
+        - Browser: [ex. Chrome]
+        - Platform: [ex. edu-core | ide-site | exp-site]
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: terms
+    attributes:
+      label: 제출전 체크리스트
+      description: 제출 전에 체크리스트를 점검해주세요.
+      options:
+        - label: CX 담당자를 Assignee에 태그 했습니다
+          required: true
+        - label: 문서와 기존 이슈를 충분히 검색했습니다
+          required: true
+        - label: 기존의 이슈와 PR을 검색했습니다
+          required: true

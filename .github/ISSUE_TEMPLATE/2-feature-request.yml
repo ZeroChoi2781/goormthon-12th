@@ -1,0 +1,51 @@
+name: Feature request
+description: Vapor 개발 패키지 또는 Vapor Docs의 기능을 제안하거나 요청합니다.
+title: "[FEAT]"
+labels: ":new: Feature"
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ### Vapor 패키지에 이슈를 제보해주셔서 감사합니다!
+
+        이슈를 제출하기 전에 open/close 이슈를 검색해 주세요. 이미 보고되었거나 해결된 이슈일 수 있습니다.
+        이게 버그인지 아닌지 확실하지 않다면, 대신 Github Discussion을 이용해 주세요. 
+        [Discussion 이동](https://github.com/goorm-dev/gds/discussions)
+
+  - type: textarea
+    id: feature-description
+    attributes:
+      label: 기능 설명
+      description: 요청하고자 하는 기능에 대해 설명해 주세요.
+      placeholder: '이 기능이 유용한 이유는...'
+    validations:
+      required: true
+
+  - type: input
+    id: components-affected
+    attributes:
+      label: 영향을 받는 컴포넌트
+      description: 이 기능 요청이 기존 컴포넌트와 관련이 있습니까?
+      placeholder: ex. Button, TextButton...
+    validations:
+      required: false
+
+  - type: textarea
+    id: context
+    attributes:
+      label: 추가 정보
+      description: 기능에 대한 추가 정보를 여기에 입력해 주세요.
+      placeholder: ex. 스크린샷, Stack Overflow 링크, 포럼 링크 등.
+    validations:
+      required: false
+
+  - type: checkboxes
+    id: terms
+    attributes:
+      label: 제출 전 체크리스트
+      description: 제출 전에 체크리스트를 점검해주세요.
+      options:
+        - label: 문서와 기존 이슈를 충분히 검색했습니다
+          required: true
+        - label: 기존의 이슈와 PR을 검색했습니다
+          required: true

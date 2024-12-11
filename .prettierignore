@@ -1,0 +1,14 @@
+_templates
+.github
+node_modules
+storybook-static
+public
+
+/libs/
+!/scripts/
+**/lib/**
+
+**/dist/*
+**/*.d.ts
+*.min.js
+*.min.css

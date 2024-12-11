@@ -1,0 +1,50 @@
+name: '[CI] PR Label 자동 지정'
+
+on:
+  pull_request:
+    types: [opened]
+
+jobs:
+  label:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out the repository
+        uses: actions/checkout@v2
+
+      - name: Extract PR title
+        run: |
+          PR_TITLE=$(jq -r '.pull_request.title' < "${GITHUB_EVENT_PATH}" || echo "")
+          echo "PR title: $PR_TITLE"
+          echo "$PR_TITLE" > pr_title.txt
+
+      - name: Add label if PR title contains keyword
+        id: add_label
+        run: |
+          LABEL=""
+          if grep -qi 'docs' pr_title.txt; then
+            LABEL="📄 vapor-docs"
+          elif grep -qi 'foundation' pr_title.txt; then
+            LABEL="🍀 vapor-foundation"
+          elif grep -qi 'core' pr_title.txt; then
+            LABEL="🍀 vapor-core"
+          elif grep -qi 'components' pr_title.txt; then
+            LABEL="🍀 vapor-components"
+          elif grep -qi 'icon' pr_title.txt; then
+            LABEL="🍀 vapor-icon"
+          elif grep -qi 'codemirror' pr_title.txt; then
+            LABEL="🍀 vapor-codemirror"
+          elif grep -qi 'build' pr_title.txt; then
+            LABEL="🗃️ Build"
+          elif grep -qi 'refactor' pr_title.txt; then
+            LABEL=":recycle: Refactor"
+          fi
+
+          echo "::set-output name=label::$LABEL"
+
+      - name: Apply label to PR
+        if: steps.add_label.outputs.label
+        uses: actions-ecosystem/action-add-labels@v1
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          labels: ${{ steps.add_label.outputs.label }}
