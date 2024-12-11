@@ -1,5 +1,5 @@
 {
-    "name": "@goorm-dev/vapor-core",
+    "name": "@ZeroChoi2781/vapor-core",
     "version": "0.22.0",
     "description": "Vapor Core",
     "keywords": [
@@ -35,8 +35,8 @@
         "node": ">=16"
     },
     "dependencies": {
-        "@goorm-dev/vapor-hooks": "^0.11.0",
-        "@goorm-dev/vapor-icons": "^0.22.0",
+        "@ZeroChoi2781/vapor-hooks": "^0.11.0",
+        "@ZeroChoi2781/vapor-icons": "^0.22.0",
         "@radix-ui/react-checkbox": "^1.1.1",
         "@radix-ui/react-dialog": "^1.1.1",
         "@radix-ui/react-dropdown-menu": "^2.1.1",
